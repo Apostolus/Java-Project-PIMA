@@ -1,11 +1,14 @@
 public abstract class Particulier {                 // Je defini la class en abstract pour la methode acheter aux magasins
     private String nom, prenom;
     protected compteBanque cb;                        // il faut definir une classe compte en banque, et voir s'il y a moyen de passer en private
+    private Adresse adresse;
 
 
-    public Particulier(String nom, String prenom){
+
+    public Particulier(String nom, String prenom, Adresse adresse){
         this.nom = nom ;
         this.prenom = prenom ;
+        this.adresse = adresse;
     }
 
     //METHODES ABSTRACT
