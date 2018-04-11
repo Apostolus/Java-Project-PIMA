@@ -15,7 +15,7 @@ public class Acheteur extends Particulier{
         satisfait = new boolean[stock];
     }
 
-    public double noterP(){
+    public double noterVendeur(){
         double d=0;
         int i=0;
         for(boolean s : satisfait){
@@ -24,7 +24,7 @@ public class Acheteur extends Particulier{
             i++;
         }
         if(i!=0)
-            return double/i;
+            return d/i;
         return 0;
     }
 

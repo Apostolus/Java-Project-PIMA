@@ -1,6 +1,6 @@
 public abstract class Particulier {                 // Je defini la class en abstract pour la methode acheter aux magasins
     private String nom, prenom;
-    protected compteBanque cb;                        // il faut definir une classe compte en banque, et voir s'il y a moyen de passer en private
+    protected CompteBanque cb;                        // il faut definir une classe compte en banque, et voir s'il y a moyen de passer en private
     private Adresse adresse;
 
 
