@@ -6,7 +6,6 @@ public class Acheteur extends Particulier{
     private int stock;
     private int stockDispo;
 
-
     public Acheteur(String nom, String prenom, int stock, int stockDispo){
         super(nom, prenom);
         acquis = new ArrayList<Bien>() ;
@@ -27,7 +26,5 @@ public class Acheteur extends Particulier{
             return d/i;
         return 0;
     }
-
-
 
 }
