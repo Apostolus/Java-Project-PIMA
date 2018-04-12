@@ -14,8 +14,8 @@ public class CompteBanque{
         this.solde = solde;
     }
 
-    // diminue le solde par le prix du bien a
-    public boolean paye(Bien a) {   // le cas ou il a pas l'argent alors on renvoie un false tq dans la onction acheter(bien) on appel la fonction paye
+    // diminue le solde par le prix du Article a
+    public boolean paye(Article a) {   // le cas ou il a pas l'argent alors on renvoie un false tq dans la onction acheter(Article) on appel la fonction paye
         if (solde > a.getPrix()){
             solde -= a.getPrix();
             return true;
