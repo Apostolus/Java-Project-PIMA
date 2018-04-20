@@ -42,7 +42,7 @@ public class Particulier extends Entite{
         } else {
             System.out.println("Impossible de payer")
         }
-    } // verifier que le particulier qui vend a ien l'article
+    } // verifier que le particulier qui vend a bien l'article
 
     public void retirerArticleVendu(Article a){
         int i= aVendre.(indexOf(a));
