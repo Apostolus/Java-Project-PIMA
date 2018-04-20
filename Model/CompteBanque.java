@@ -16,6 +16,7 @@ public class CompteBanque{
 
     // diminue le solde par le prix du Article a
     public boolean paye(Article a) {   // le cas ou il a pas l'argent alors on renvoie un false tq dans la onction acheter(Article) on appel la fonction paye
+
         if (solde > a.getPrix()){
             solde -= a.getPrix();
             return true;
@@ -28,7 +29,7 @@ public class CompteBanque{
         return false;
     }
 
-    //fonction pour remplir le compte, lorsqu'un acheteur chete a un vendeur par exemple
+    //fonction pour remplir le compte, lorsqu'un acheteur achete a un vendeur par exemple
     public void reflouer(int montant) {
         if (montantDecouvert < montantDecouvertAutorise) {
             if (montantDecouvert + montant < montantDecouvertAutorise)
