@@ -12,8 +12,6 @@ public abstract class Article {
     private Time timeOfPublish;
     private double price;
 
-
-
     protected Article(String type,String categorie, String description, Time timeOfPublish, double price) {
         nbArticle++;
         this.id = nbArticle;

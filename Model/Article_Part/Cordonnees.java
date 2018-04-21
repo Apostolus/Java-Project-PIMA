@@ -2,19 +2,22 @@
  * cette classe décris l'adresse d'une personne.
  * elle est créée pour regrouper les attributs en rapport avec l'adresse
  */
-public interface AdressPerson {
+public class Cordonnees {
 
 	private String country;
 	private String departement;
 	private String city;
 	private String specificAdress;
+	private String email;
+	private String phoneNumber;
 
-
-    public AdressPerson(String country, String departement, String city, String specificAdress) {
+    public Cordonnees(String country, String departement, String city, String specificAdress, String email, String phoneNumber) {
         this.country = country;
         this.departement = departement;
         this.city = city;
         this.specificAdress = specificAdress;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
 
@@ -47,11 +50,33 @@ public interface AdressPerson {
 	}
 
 	/**
-	 * 
 	 * @param specificAdress
 	 */
 	public void setSpecificAdress(String specificAdress) {
 		this.specificAdress = specificAdress;
 	}
 
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
 }

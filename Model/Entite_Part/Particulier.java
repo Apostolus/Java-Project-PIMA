@@ -75,8 +75,6 @@ public class Particulier extends Entite{
         if(i!=0) note = (d/i)*10;
     }
 
-
-
     // LES GETTERS on ne get pas le cb
     public String getNom() {
         return nom;

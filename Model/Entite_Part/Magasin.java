@@ -18,12 +18,12 @@ public class Magasin extends Professionnel{
 
 
     //Methodes ENTITE
-    public void achete(Entrepot e,Article a){
+    public void commander(Entrepot e,Article a){
 
     }
 
     public void ajouterALaCommande(Article article, int quantite){
-        aCommander.put(a, quantite);
+        aCommander.put(article, quantite);
     }
     public void ravitailler(Entrepot e){
 
