@@ -1,4 +1,4 @@
 package apostolus.application_vente;
 
-public class Time {
+public class Localisation {
 }
