@@ -1,7 +1,3 @@
-
-
-
-
 public abstract class Article {
 
     protected final int id;

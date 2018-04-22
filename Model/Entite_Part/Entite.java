@@ -40,10 +40,6 @@ public abstract class Entite implements Vendre{
         return coordonnees;
     }
 
-    public CompteBanque getCompteBanque() {
-        return compteBanque;
-    }
-
 	public String getNom() {
 		return nom;
 	}
