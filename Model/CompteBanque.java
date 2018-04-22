@@ -32,15 +32,17 @@ public class CompteBanque{
      */
 
     // diminue le solde par le prix du Article a
-    public boolean paye(Article article) {   // le cas ou il a pas l'argent alors on renvoie un false tq dans la onction acheter(Article) on appel la fonction paye
-
-        if (solde > article.getPrice()){
-            solde -= article.getPrice();
+    public boolean paye(Article article,int quantite) {   // le cas ou il a pas l'argent alors on renvoie un false tq dans la onction acheter(Article) on appel la fonction paye
+    	
+    	double price = article.getPrice()*quantite;
+    	
+        if (solde > price){
+            solde -= price;
             return true;
         }
-        if (decouvert && montantDecouvert >= article.getPrice()) {
-            solde -= article.getPrice();
-            montantDecouvert -= article.getPrice();
+        if (decouvert && montantDecouvert >= price) {
+            solde -= price;
+            montantDecouvert -= price;
             return true;
         }
         return false;

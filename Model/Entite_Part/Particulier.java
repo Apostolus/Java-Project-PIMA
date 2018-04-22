@@ -4,8 +4,8 @@ public class Particulier extends Entite{
 
     private static int nb_personnes = 0;
     private String nom, prenom;
-    private ArrayListe<Article> acquisP;                   // ce qu'il va acheter chez un PARTICULIER
-    private ArrayListe<Article> acquisM;                   // ce qu'il va acheter chez un MAGASIN
+    private ArrayList<Article> acquisP;                   // ce qu'il va acheter chez un PARTICULIER
+    private ArrayList<Article> acquisM;                   // ce qu'il va acheter chez un MAGASIN
     private ArrayList<Article> aVendre;                     // ce qu'il veut vendre
     //private ArrayList<boolean> satisfaitPA;                    // tableaux referençant la satisfaction pour chaque produit acheter A UN PARTICULIER
     private double note;

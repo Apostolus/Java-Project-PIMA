@@ -14,8 +14,8 @@ public class Commande{
         this.numCommande = 0;
     }
 
-    public void LancerCommande(Entrepot entrepot){
-
+    public boolean LancerCommande(Entrepot entrepot){
+    	return entrepot.addCommande(this);
     }
 
     public int getNumCommande() {

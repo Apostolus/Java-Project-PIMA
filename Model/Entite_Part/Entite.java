@@ -1,17 +1,19 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Entite implements Acheter, Vendre{
+public abstract class Entite implements Vendre{
 
+	private String nom;
     protected Cordonnees coordonnees;
     private CompteBanque compteBanque;
     protected Map<Article, Integer> articleArray;
 
 
-    protected Entite(String country, String departement, String city, String specificAdress, String email, String phoneNumber,boolean decouvert, int montantDecouvertAutorise, int montantDecouvert, int solde) {
+    protected Entite(String country, String departement, String city, String specificAdress, String email, String phoneNumber,boolean decouvert, int montantDecouvertAutorise, int montantDecouvert, int solde, String nom) {
         this.coordonnees = new Cordonnees(country,departement,city,specificAdress,email,phoneNumber);
         this.compteBanque = new CompteBanque(this,decouvert, montantDecouvertAutorise, montantDecouvert, solde);
         this.articleArray = new HashMap<>();
+        this.nom = nom;
     }
 
 
@@ -22,24 +24,6 @@ public abstract class Entite implements Acheter, Vendre{
     		articleArray.put(article,quantite);
     	}
     	articleArray.put(article,0);
-    }
-    
-    protected boolean acheter(Entite entite, Article article, int quantite) {
-    	if(entite instanceof Particulier) {
-    		//TO-DO en fonction du particulier
-    		
-    	}
-    	if(entite instanceof Professionnel) {
-    		//TO-DO en fonction du professionnel
-    		if(entite.verifierDisponibilite(article, quantite)){
-    			Commande commande = new Commande(this,article,quantite);
-    			
-    			commande.LancerCommande((Entrepot)entite);
-    		}
-    		
-    	}
-    	
-    	return false;
     }
     
     public boolean verifierDisponibilite(Article article, int quantite) {
@@ -58,6 +42,15 @@ public abstract class Entite implements Acheter, Vendre{
     public CompteBanque getCompteBanque() {
         return compteBanque;
     }
+
+	public String getNom() {
+		return nom;
+	}
+	
+	protected boolean payer(Commande commande) {
+		
+		return compteBanque.paye(commande.getArticleCommande(), commande.getQuantite());
+	}
 
     /*
 

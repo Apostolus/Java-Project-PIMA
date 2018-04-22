@@ -1,35 +1,38 @@
 import java.util.Map;
 import java.util.HashMap ;
 
-public class Magasin extends Professionnel{
-    private String marque ;
-    private Map<Article , Integer> Panier;
+public class Magasin extends Professionnel implements Acheter{
+    
+	//private String marque ; cet attribut existe deja, sous forme de nom dans la classe entité
+    private Map<Article , Integer> panier;
 
     //emetteur de commande
     //date
     // dico d'articles
 
 
-    public Magasin(String numeroTel, String email,String adresse, String marque, CompteBanque cb) {
-        super(numeroTel, email, adresse, cb);
-        this.marque = marque;
-        aCommander = new HashMap<>();
+    public Magasin(String country, String departement, String city, String specificAdress, String email, String phoneNumber,boolean decouvert, int montantDecouvertAutorise, int montantDecouvert, int solde,String nom){
+        super(country,departement,city,specificAdress,email,phoneNumber,decouvert,montantDecouvertAutorise,montantDecouvert,solde,nom);
+        //this.marque = marque;  
+         panier = new HashMap<>();
     }
 
-
-    //Methodes ENTITE
-    public void commander(Entrepot e,Article a){
-
-    }
-
-    public void ajouterALaCommande(Article article, int quantite){
-        aCommander.put(article, quantite);
-    }
-    public void ravitailler(Entrepot e){
-
-    }
-
-
-    }
+	@Override
+	public boolean Achete(Entrepot entrepot, Article article,int quantite) {
+		
+		Commande commande = new Commande(this,article,quantite);
+		if(entrepot.addCommande(commande)) {
+			return this.payer(commande);
+		}
+        return false;
+	}
+	
+	@Override
+	public Map<Article,Integer> Achete(Entrepot entrepot) {
+		
+		
+		
+		return panier;
+	}
 
 }

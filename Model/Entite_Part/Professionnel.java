@@ -1,21 +1,14 @@
-import java.util.Map;
-import java.util.HashMap ;
-import java.util.ArrayList ;
+
 
 
 public abstract class Professionnel extends Entite{
-    private Map<Article, Integer> objetAVendre ;
-    private String adresse;
 
-
-    public Professionnel(String numeroTel, Sting email, String adresse, CompteBanque cb){
-        super(numeroTel, email, cb);
-        this.adresse = adresse;
-        objetAVendre = new HashMap<>();
+     Professionnel(String country, String departement, String city, String specificAdress, String email, String phoneNumber,boolean decouvert, int montantDecouvertAutorise, int montantDecouvert, int solde, String nom){
+        super(country,departement,city,specificAdress,email,phoneNumber,decouvert,montantDecouvertAutorise,montantDecouvert,solde,nom);
     }
 
 
-
+    /*
     //les methodes à implementer de la classe Entite.
     public abstract void Achete();
     public abstract void ajouterArticleAchete();  // ajoute les objets acquis par la vente dans le tableaux des objets acquis
@@ -26,6 +19,6 @@ public abstract class Professionnel extends Entite{
 
     // Les methodes specifiques a Professionnel qui seront a implementer dans Magasin et Entrepot
 
-
+	*/
 
 }

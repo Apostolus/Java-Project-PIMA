@@ -1,5 +1,8 @@
+import java.util.Map;
+
 public interface Acheter{
-    public void Achete();
-    public void ajouterArticleAchete();
+
+	boolean Achete(Entrepot entrepot, Article article, int quantite);
+	public Map<Article,Integer> Achete(Entrepot entrepot) ;
 
 }
