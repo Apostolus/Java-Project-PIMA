@@ -1,34 +1,35 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public abstract class Entite implements Vendre{
 
 	private String nom;
     protected Cordonnees coordonnees;
     private CompteBanque compteBanque;
-    protected Map<Article, Integer> articleArray;
+    protected ArrayList<Article> articleArray;
 
 
     protected Entite(String country, String departement, String city, String specificAdress, String email, String phoneNumber,boolean decouvert, int montantDecouvertAutorise, int montantDecouvert, int solde, String nom) {
         this.coordonnees = new Cordonnees(country,departement,city,specificAdress,email,phoneNumber);
         this.compteBanque = new CompteBanque(this,decouvert, montantDecouvertAutorise, montantDecouvert, solde);
-        this.articleArray = new HashMap<>();
+        this.articleArray = new ArrayList<>();
         this.nom = nom;
     }
 
 
-    protected void addArticleArray(Article article) {
-    	if(articleArray.containsKey(article)) {
-    		int quantite = articleArray.get(article);
-    		quantite++;
-    		articleArray.put(article,quantite);
+    protected void addArticleArray(Article article, int quantiteAjoute) {
+    	if(articleArray.contains(article)) {
+    		
+    		int index_art = articleArray.indexOf(article);
+    		Article article_temp = articleArray.remove(index_art);
+    		article_temp.incrementeQuantite(quantiteAjoute);
     	}
-    	articleArray.put(article,0);
     }
     
     public boolean verifierDisponibilite(Article article, int quantite) {
-    	if(articleArray.containsKey(article)) {
-    		if(articleArray.get(article)>=quantite) {
+    	if(articleArray.contains(article)) {
+    		int index_art = articleArray.indexOf(article);
+    
+    		if((articleArray.get(index_art).getQuantite())>=quantite) {
     			return true;
     		}
     	}
@@ -51,21 +52,5 @@ public abstract class Entite implements Vendre{
 		
 		return compteBanque.paye(commande.getArticleCommande(), commande.getQuantite());
 	}
-
-    /*
-
-
-    public abstract void Achete();
-    public abstract void ajouterArticleAchete();  // ajoute les objets acquis par la vente dans le tableaux des objets acquis
-    
-      
-      pour moi ces méthodes ne servent à rien, on peut gerer directement ces actions dans les
-      méthodes acheter et lancer la commande.
-     
-   	public abstract  void mettreEnVente();    Ajoute un objet a vendre
-    public abstract void retirerArticleVendu();
-    
-    */
-
 
 }

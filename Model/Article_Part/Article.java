@@ -1,4 +1,4 @@
-package apostolus.application_vente;
+
 
 
 
@@ -11,8 +11,19 @@ public abstract class Article {
     private String description;
     private Time timeOfPublish;
     private double price;
+    private int quantite;
+    
+    /**
+     * 
+     * @param type
+     * @param categorie
+     * @param description
+     * @param timeOfPublish
+     * @param price
+     * @param quantite
+     */
 
-    protected Article(String type,String categorie, String description, Time timeOfPublish, double price) {
+    protected Article(String type,String categorie, String description, Time timeOfPublish, double price,int quantite) {
         nbArticle++;
         this.id = nbArticle;
         this.type = type;
@@ -20,11 +31,22 @@ public abstract class Article {
         this.timeOfPublish = timeOfPublish;
         this.categorie = categorie;
         this.price = price;
+        this.quantite = quantite;
     }
 
+    /**
+     * 
+     * @return
+     */
+    
     public String getType() {
         return type;
     }
+    
+    /**
+     * 
+     * @param type
+     */
 
     public void setType(String type) {
         this.type = type;
@@ -60,5 +82,17 @@ public abstract class Article {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+    
+    public void incrementeQuantite(int quantiteAjoute) {
+    	this.quantite+=quantiteAjoute;
     }
 }
