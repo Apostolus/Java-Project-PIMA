@@ -34,7 +34,8 @@ public class Particulier extends Entite{
     }
 
 
-    public void Achete(Particulier p, Article a) {
+    public void achete(Particulier p, Article a) {
+
         if (getCb().paye(a)) { // Si le particulier courant a l'argent (ou le decouvert) pour acheter a
             p.retirerArticleVendu(a);  // on retir l'Article du tableaux de ventes du vendeur p
             this.ajouterArticleP(a);   // on ajoute l'article au tableau acquisP tu courant
@@ -43,6 +44,8 @@ public class Particulier extends Entite{
             System.out.println("Impossible de payer")
         }
     } // verifier que le particulier qui vend a bien l'article
+
+    public void ache
 
     public void retirerArticleVendu(Article a){
         int i= aVendre.(indexOf(a));

@@ -2,8 +2,8 @@ public class CompteBanque{
     private static int id = 0;
     private final String numero; // je vais à la fin personnaliser le numéro du compte bancaire en fonction de l'entité
     private boolean decouvert;
-    private int montantDecouvertAutorise;
-    private int montantDecouvert;
+    private int final montantDecouvertAutorise;  // la limite maximal autorise
+    private int montantDecouvert;     //le montant courant de decouvert
     private int solde;
     
     /**
@@ -32,7 +32,7 @@ public class CompteBanque{
      */
 
     // diminue le solde par le prix du Article a
-    public boolean paye(Article article,int quantite) {   // le cas ou il a pas l'argent alors on renvoie un false tq dans la onction acheter(Article) on appel la fonction paye
+    public boolean paye(Article article,int quantite) {   // le cas ou il a pas l'argent alors on renvoie un false tq dans la fonction acheter(Article) on appel la fonction paye
     	
     	double price = article.getPrice()*quantite;
     	
