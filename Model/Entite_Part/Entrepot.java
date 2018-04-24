@@ -5,14 +5,10 @@ public class Entrepot extends Professionnel{
     	 super(country,departement,city,specificAdress,email,phoneNumber,decouvert,montantDecouvertAutorise,montantDecouvert,solde,nom);
     
     }
-    
-    
-	
 
-	
-
-	
-
-	
-
+	@Override
+	public boolean Achete(Entrepot entrepot, Article article, int quantite) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

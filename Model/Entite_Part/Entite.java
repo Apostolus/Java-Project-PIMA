@@ -25,6 +25,12 @@ public abstract class Entite implements Acheter{
     	}
     }
     
+    @Override
+	public boolean payer(Commande commande) {
+ 		// TODO Auto-generated method stub
+ 		return compteBanque.paye(commande.getArticleCommande(), commande.getQuantite());
+ 	}
+    
     
     public Cordonnees getCoordonnees() {
         return coordonnees;
@@ -32,9 +38,5 @@ public abstract class Entite implements Acheter{
 
 	public String getNom() {
 		return nom;
-	}
-
-	public CompteBanque getCompteBanque() {
-		return compteBanque;
 	}
 }

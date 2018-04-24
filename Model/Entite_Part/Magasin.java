@@ -14,13 +14,9 @@ public class Magasin extends Professionnel{
         panier = new ArrayList<>();
     }
 
-	
-
-	
-	
-
-	
-	
-
-
+	@Override
+	public boolean Achete(Entrepot entrepot, Article article, int quantite) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

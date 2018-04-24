@@ -27,18 +27,6 @@ public abstract class Professionnel extends Entite implements Vendre{
  	}
      
      @Override
- 	public boolean payer(Commande commande) {
- 		// TODO Auto-generated method stub
- 		return getCompteBanque().paye(commande.getArticleCommande(), commande.getQuantite());
- 	}
-     
-     @Override
- 	public boolean Achete(Entrepot entrepot, Article article, int quantite) {
- 		// TODO Auto-generated method stub
- 		return false;
- 	}
-     
-     @Override
      public boolean verifierDisponibilite(Article article, int quantite) {
      	if(articleArray.contains(article)) {
      		int index_art = articleArray.indexOf(article);
