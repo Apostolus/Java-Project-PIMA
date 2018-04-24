@@ -7,7 +7,6 @@ public class Particulier extends Entite{
    // private ArrayList<Article> acquisP;                    ce qu'il va acheter chez un PARTICULIER
    // private ArrayList<Article> acquisM;                    ce qu'il va acheter chez un MAGASIN
     private ArrayList<Article> aVendre;                     // ce qu'il veut vendre
-    //private ArrayList<boolean> satisfaitPA;                    // tableaux referençant la satisfaction pour chaque produit acheter A UN PARTICULIER
     private double note;
     private int stock;
     //private double recetteJ;                             // recette journaliere
@@ -34,29 +33,24 @@ public class Particulier extends Entite{
     }
 
 /*
-    public void Achete(Particulier p, Article a) {
-        if (getCb().paye(a)) { // Si le particulier courant a l'argent (ou le decouvert) pour acheter a
+    public void Achete(Particulier p, Article a) { // livraison +++++++++ verifier s'il veut vendre ou pas
+        if (this.paye(a)) { // Si le particulier courant a l'argent (ou le decouvert) pour acheter a
             p.retirerArticleVendu(a);  // on retir l'Article du tableaux de ventes du vendeur p
             this.ajouterArticleP(a);   // on ajoute l'article au tableau acquisP tu courant
             p.reflouer(a.getPrix());   // on modifie le compte en banque du vendeur p
         } else {
             System.out.println("Impossible de payer")
         }
-    } // verifier que le particulier qui vend a bien l'article
+    }
     
     */
     
-    
 
-    public void retirerArticleVendu(Article a){
+
+
+    public void retirerArticleVendu(Article a){ // ajouter l quantite
         int i= aVendre.(indexOf(a));
         if(i!=-1) aVendre.remove(i);
-        /*for(Arcticle art : aVendre){
-            i++;
-            if(art==a)
-                aVendre.remove(i);
-        */
-
         }
     
     /*
@@ -67,18 +61,21 @@ public class Particulier extends Entite{
     }
 
 */
-    public void mettreEnVente(Article a){
-        aVendre.add(a);
+
+
+    public void mettreEnVente(Article articleAVendre){
+        aVendre.add(articleAVendre);
     }
 
 
     public void noterVendeur(){ //on parcours les objets a vendre et on definit la note enfonction de l'etat de chaque objct
-        double d=0 ,i=0;
-        for(boolean s : a.getEtat()){
-            if(s) d++;
-            i++;
+        double sommeEtat=0 ;
+        int nbArticle=0;
+        for(Artcile articleEnVente: articleArray()){
+            sommeEtat+= articleEnVentegetEtat();
+            nbArticle++;
         }
-        if(i!=0) note = (d/i)*10;
+        if(nbArticle != 0) note = (sommeEtat/nbArticle);
     }
 
     // LES GETTERS on ne get pas le cb
