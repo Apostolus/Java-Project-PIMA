@@ -3,9 +3,9 @@ import java.util.ArrayList;
 public class Particulier extends Entite{
 
     private static int nb_personnes = 0;
-    private String nom, prenom;
-    private ArrayList<Article> acquisP;                   // ce qu'il va acheter chez un PARTICULIER
-    private ArrayList<Article> acquisM;                   // ce qu'il va acheter chez un MAGASIN
+   // private String nom, prenom;
+   // private ArrayList<Article> acquisP;                    ce qu'il va acheter chez un PARTICULIER
+   // private ArrayList<Article> acquisM;                    ce qu'il va acheter chez un MAGASIN
     private ArrayList<Article> aVendre;                     // ce qu'il veut vendre
     //private ArrayList<boolean> satisfaitPA;                    // tableaux referençant la satisfaction pour chaque produit acheter A UN PARTICULIER
     private double note;
@@ -33,9 +33,8 @@ public class Particulier extends Entite{
 
     }
 
-
-    public void achete(Particulier p, Article a) {
-
+/*
+    public void Achete(Particulier p, Article a) {
         if (getCb().paye(a)) { // Si le particulier courant a l'argent (ou le decouvert) pour acheter a
             p.retirerArticleVendu(a);  // on retir l'Article du tableaux de ventes du vendeur p
             this.ajouterArticleP(a);   // on ajoute l'article au tableau acquisP tu courant
@@ -44,8 +43,10 @@ public class Particulier extends Entite{
             System.out.println("Impossible de payer")
         }
     } // verifier que le particulier qui vend a bien l'article
-
-    public void ache
+    
+    */
+    
+    
 
     public void retirerArticleVendu(Article a){
         int i= aVendre.(indexOf(a));
@@ -57,17 +58,19 @@ public class Particulier extends Entite{
         */
 
         }
+    
+    /*
 
     public void ajouterArticleAchete(Entite e,Article a) {
         if(e instanceof Particulier) acquisP.add(a);
         else acquisM.add(a);
     }
 
+*/
     public void mettreEnVente(Article a){
         aVendre.add(a);
     }
 
-    public void Achete(Magasin p, Article a){}
 
     public void noterVendeur(){ //on parcours les objets a vendre et on definit la note enfonction de l'etat de chaque objct
         double d=0 ,i=0;
@@ -79,12 +82,12 @@ public class Particulier extends Entite{
     }
 
     // LES GETTERS on ne get pas le cb
-    public String getNom() {
+/*    public String getNom() {
         return nom;
     }
     public String getPrenom() {
         return prenom;
-    }
+    }*/
     public static int getNb_personnes() {
         return nb_personnes;
     }
@@ -97,12 +100,14 @@ public class Particulier extends Entite{
     public ArrayList<Article> getaVendre() {
         return aVendre;
     }
+    /*
     public ArrayListe<Article> getAcquisP() {
         return acquisP;
     }
     public ArrayListe<Article> getAcquisM() {
         return acquisM;
     }
+    */
     public int getStock() {
         return stock;
     }
