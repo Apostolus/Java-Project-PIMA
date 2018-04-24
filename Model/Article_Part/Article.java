@@ -8,6 +8,7 @@ public abstract class Article {
     private Time timeOfPublish;
     private double price;
     private int quantite;
+    private int etat;
     
     /**
      * 
@@ -90,5 +91,13 @@ public abstract class Article {
     
     public void incrementeQuantite(int quantiteAjoute) {
     	this.quantite+=quantiteAjoute;
+    }
+
+    public int getEtat() {
+        return etat;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
     }
 }
