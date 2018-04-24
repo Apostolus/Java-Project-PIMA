@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 
 
-public class Magasin extends Professionnel implements Acheter{
+public class Magasin extends Professionnel{
 
     @SuppressWarnings("unused")
 	private ArrayList<Article> panier;
@@ -14,14 +14,13 @@ public class Magasin extends Professionnel implements Acheter{
         panier = new ArrayList<>();
     }
 
-	@Override
-	public boolean Achete(Entrepot entrepot, Article article,int quantite) {
-		
-		Commande commande = new Commande(this,article,quantite);
-		if(entrepot.addCommande(commande)) {
-			return this.payer(commande);
-		}
-        return false;
-	}
+	
+
+	
+	
+
+	
+	
+
 
 }
