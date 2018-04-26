@@ -11,4 +11,5 @@ public class Entrepot extends Professionnel{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 }

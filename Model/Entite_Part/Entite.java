@@ -28,7 +28,7 @@ public abstract class Entite implements Acheter{
     @Override
 	public boolean payer(Commande commande) {
  		// TODO Auto-generated method stub
- 		return compteBanque.paye(commande.getArticleCommande(), commande.getQuantite());
+ 		return compteBanque.paye(commande.getTotalPrice());
  	}
     
     

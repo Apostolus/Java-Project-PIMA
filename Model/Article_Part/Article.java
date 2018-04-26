@@ -1,3 +1,6 @@
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 public abstract class Article {
 
     protected final int id;
@@ -29,6 +32,44 @@ public abstract class Article {
         this.categorie = categorie;
         this.price = price;
         this.quantite = quantite;
+    }
+
+    protected Article(Article article){
+        this(article.type,article.categorie,article.description,article.timeOfPublish,article.price,article.quantite);
+    }
+
+    @Override
+    public Article clone(){
+    	Class<?> classe = this.getClass();
+    	Constructor<?> constructor;
+		try {
+			constructor = classe.getConstructor(Article.class);
+			return (Article)constructor.newInstance(this);
+		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException exceptionClone) {
+            exceptionClone.printStackTrace();
+        }
+		return null;
+    }
+
+    /**
+     *
+     * deux articles sont égaux s'ils sont de meme catégorie, type et sont dans le meme état.
+     *
+     * @param object
+     * @return
+     */
+    
+    @Override
+    public boolean equals(Object object) {
+    	
+    	if(super.equals(object)) {
+    		Article article = (Article)object;
+    		if(this.categorie.equals(article.categorie) && this.type.equals(article.type) && this.etat == article.etat) {
+    			return true;
+    		}
+    	}
+    	return false;
     }
 
     /**

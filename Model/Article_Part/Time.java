@@ -16,7 +16,6 @@ public class Time{
 	}
 
 
-
 	public static String getStringDateFormat(Date date) {
 		return FORMAT_DATE.format(date);
 	}
