@@ -8,7 +8,7 @@ public class Time{
 	protected static final SimpleDateFormat FORMAT_DATE = new SimpleDateFormat("dd/MM/yyyy");
 	protected static final SimpleDateFormat HEURE_DATE = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 	
-	private Date date;
+	private  Date date;
 	
 	
 	public Time() {
@@ -16,16 +16,16 @@ public class Time{
 	}
 
 
-	public static String getStringDateFormat(Date date) {
-		return FORMAT_DATE.format(date);
+	public String getStringDateFormat() {
+		return FORMAT_DATE.format(this.date);
 	}
 
-	public static String getStringDateEtHeureFormat(Date date) {
-		return HEURE_DATE.format(date);
+	public String getStringDateEtHeureFormat(Date date) {
+		return HEURE_DATE.format(this.date);
 	}
 
     public Date getDate() {
-        return date;
+        return this.date;
     }
 
     public void setDate(Date date) {
