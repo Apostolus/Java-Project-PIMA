@@ -47,6 +47,20 @@ public class CompteBanque{
         }
         return false;
     }
+    
+    public boolean paye(double price) {
+    	
+    	if (solde > price){
+            solde -= price;
+            return true;
+        }
+        if (decouvert && montantDecouvert >= price) {
+            solde -= price;
+            montantDecouvert -= price;
+            return true;
+        }
+        return false;
+    }
 
     //fonction pour remplir le compte, lorsqu'un acheteur achete a un vendeur par exemple
     public void reflouer(int montant) {

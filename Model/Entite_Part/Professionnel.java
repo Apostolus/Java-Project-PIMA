@@ -10,13 +10,8 @@ public abstract class Professionnel extends Entite implements Vendre{
      }
      
      @Override
-     public boolean addCommande(Commande commande) {
-     	
-     	if(this.verifierDisponibilite(commande.getArticleCommande(), commande.getQuantite())) {
-     		commandes.add(commande);
-     		return true;
-     	}
-     	return false;
+     public void addCommande(Commande commande) {
+     	commandes.add(commande);
      }
      
      @Override
