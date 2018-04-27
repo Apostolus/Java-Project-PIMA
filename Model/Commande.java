@@ -3,8 +3,8 @@ public class Commande{
     private final int numCommande;
     private Time dateDeCommande;
     private Entite destinataire;
-    private Article articleCommande;
-    private int quantite;
+    private Article articleCommande; // faire un tableau ou array d'articles
+    private int quantite;            // quantite de quoi ?
 
     public Commande(Entite destinataire, Article articleCommande,int quantite) {
         this.quantite = quantite;

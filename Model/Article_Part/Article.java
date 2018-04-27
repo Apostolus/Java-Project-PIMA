@@ -74,7 +74,7 @@ public abstract class Article {
     }
 
     public double getPrice() {
-        return price;
+        return price*quantite;
     }
 
     public void setPrice(double price) {
