@@ -24,6 +24,7 @@ public class Commande{
      *
      * @param article
      * @param quantite
+     * @param entrepot
      */
     
     public boolean addCommande(Article article,int quantite,Entrepot entrepot) {
