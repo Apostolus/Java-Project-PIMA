@@ -2,18 +2,20 @@ import java.util.ArrayList;
 
 public class Commande{
 
-    private final int numCommande;
+	private int nbCommande;
+    private final String numCommande;
     private Time dateDeCommande;
     private Entite destinataire;
     private ArrayList<Article> articlesCommande;
     private Time timeOfCommande;
 
-    public Commande(Entite destinataire,int quantite) {
+    public Commande(Entite destinataire,int quantite, int nbCommande) {
+    	this.nbCommande = nbCommande;
         this.dateDeCommande = new Time();
         this.destinataire = destinataire;
         this.articlesCommande = new ArrayList<>();
-        this.numCommande = 0;
         this.timeOfCommande = new Time();
+        this.numCommande = ID_Gestion.generateArticleNumCommande(timeOfCommande, nbCommande, destinataire);
     }
 
     /**
@@ -24,6 +26,7 @@ public class Commande{
      *
      * @param article
      * @param quantite
+     * @param entrepot
      */
     
     public boolean addCommande(Article article,int quantite,Entrepot entrepot) {
@@ -54,7 +57,7 @@ public class Commande{
     	entrepot.addCommande(this);
     }
 
-    public int getNumCommande() {
+    public String getNumCommande() {
         return numCommande;
     }
 
@@ -82,4 +85,14 @@ public class Commande{
     	}
     	return price;
     }
+    
+    public int getNbCommande() {
+		return nbCommande;
+	}
+    
+    public void setNbCommande(int nbCommande) {
+		this.nbCommande = nbCommande;
+	}
+    
+    
 }

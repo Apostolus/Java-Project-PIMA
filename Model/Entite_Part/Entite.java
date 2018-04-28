@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public abstract class Entite implements Acheter{
 
+	private static int entiteNumber = 0;
+	private final int id;
 	private String nom;
     protected Cordonnees coordonnees;
     private CompteBanque compteBanque;
@@ -9,10 +11,12 @@ public abstract class Entite implements Acheter{
 
 
     protected Entite(String country, String departement, String city, String specificAdress, String email, String phoneNumber,boolean decouvert, int montantDecouvertAutorise, int montantDecouvert, int solde, String nom) {
-        this.coordonnees = new Cordonnees(country,departement,city,specificAdress,email,phoneNumber);
+        entiteNumber++;
+    	this.coordonnees = new Cordonnees(country,departement,city,specificAdress,email,phoneNumber);
         this.compteBanque = new CompteBanque(this,decouvert, montantDecouvertAutorise, montantDecouvert, solde);
         this.articleArray = new ArrayList<>();
         this.nom = nom;
+        this.id = entiteNumber;
     }
 
     
@@ -27,7 +31,6 @@ public abstract class Entite implements Acheter{
     
     @Override
 	public boolean payer(Commande commande) {
- 		// TODO Auto-generated method stub
  		return compteBanque.paye(commande.getTotalPrice());
  	}
     
@@ -38,5 +41,9 @@ public abstract class Entite implements Acheter{
 
 	public String getNom() {
 		return nom;
+	}
+	
+	public int getId() {
+		return id;
 	}
 }

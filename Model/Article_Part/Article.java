@@ -12,6 +12,7 @@ public abstract class Article {
     private double price;
     private int quantite;
     private int etat;
+    private String numeroDeSerie;
     
     /**
      * 
@@ -21,6 +22,7 @@ public abstract class Article {
      * @param timeOfPublish
      * @param price
      * @param quantite
+     * @param numeroSerie 
      */
 
     protected Article(String type,String categorie, String description, Time timeOfPublish, double price,int quantite) {
@@ -32,6 +34,7 @@ public abstract class Article {
         this.categorie = categorie;
         this.price = price;
         this.quantite = quantite;
+        this.numeroDeSerie = ID_Gestion.generateArticleNumero(this);
     }
 
     protected Article(Article article){
@@ -141,4 +144,8 @@ public abstract class Article {
     public void setEtat(int etat) {
         this.etat = etat;
     }
+    
+    public String getNumeroDeSerie() {
+		return numeroDeSerie;
+	}
 }
