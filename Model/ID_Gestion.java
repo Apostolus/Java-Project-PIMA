@@ -3,7 +3,7 @@ public class ID_Gestion {
 
 
     /**
-     * Le numero d'un article dans un magasin est composé de 3 parties:
+     *  Le numero d'un article dans un magasin est composé de 3 parties:
      * la première décrit la catégorie, la deuxième le type, et la troisième son id.
      * 
      * si c'est un mobilier c'est la lettre M qui commence sinon la lettre I

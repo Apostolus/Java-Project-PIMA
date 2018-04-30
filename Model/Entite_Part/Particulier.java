@@ -3,24 +3,24 @@ import java.util.ArrayList;
 public class Particulier extends Entite{
 
     private static int nb_personnes = 0;
-   private double note;
+    private double note;
     private int stock;
     private double recette;                                   // recette journaliere
     private Commande panier;                                  // la commande qui sera envoyer a un PROFESSIONNEL
-    private ArrayList articleChoisi;                          // repertorie la liste des article que le particulier voudrait acheter chez un PROFESSIONNEL
+    private ArrayList<Article> articleChoisi;                          // repertorie la liste des article que le particulier voudrait acheter chez un PROFESSIONNEL
 
     public Particulier(String country, String departement, String city, String specificAdress, String email, String phoneNumber,boolean decouvert, int montantDecouvertAutorise, int montantDecouvert, int solde, String nom)
         super(country,departement,city,specificAdress,email,phoneNumber,decouvert,montantDecouvertAutorise,montantDecouvert,solde,nom);
-        this.stock = stock;
+        //this.stock = stock;
         note=0;
         recette =0;
     }
 
     public boolean Achete(Entite entite, Article articleAVendre, boolean objectifVente, int quantiteVoulu) { // livraison
         if (this.payeArticle(articleAVendre, quantiteVoulu)) { // on verifie qu'on a l'oseil
-            panier.addCommande();                              // on ajote au panier
-            entite.reflouer(articleAVendre.getPriceAvecQuantite(quantiteVoulu)); // le vendeur prend l'argent
-            if(objectifVente){ articleArray.add(articleAVendre);}                // on le met en vente s'il est necessaire
+                panier.addCommande();                              // on ajote au panier
+                entite.reflouer(articleAVendre.getPriceAvecQuantite(quantiteVoulu)); // le vendeur prend l'argent
+                if(objectifVente){ articleArray.add(articleAVendre);}                // on le met en vente s'il est necessaire
             return true;
         }
 
@@ -43,6 +43,10 @@ public class Particulier extends Entite{
             }
             i++;
         }
+    }
+
+    public boolean reglerPanier(){
+        return this.payeCommande(panier);
     }
 
     public void acheteParticulier(Particulier particulier, Article article, boolean objectifVente){
@@ -84,6 +88,18 @@ public class Particulier extends Entite{
         }
         if(nbArticle != 0) note = (sommeEtat/nbArticle);
     }
+
+	@Override
+	public boolean Achete(Entrepot entrepot, Article article, int quantite) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean payer(Commande commande) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 
 
