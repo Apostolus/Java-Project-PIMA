@@ -42,6 +42,8 @@ public abstract class Entite implements Acheter{
         return compteBanque.paye(article, quantite);
     }
 
+
+
  	//faire une methode reflouer
     
     

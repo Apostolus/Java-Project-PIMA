@@ -7,47 +7,25 @@ public class Particulier extends Entite{
     private int stock;
     private double recette;                                   // recette journaliere
     private Commande panier;                                  // la commande qui sera envoyer a un PROFESSIONNEL
-    private ArrayList<Article> articleChoisi;                          // repertorie la liste des article que le particulier voudrait acheter chez un PROFESSIONNEL
+    private ArrayList<Article> acquis;
 
     public Particulier(String country, String departement, String city, String specificAdress, String email, String phoneNumber,boolean decouvert, int montantDecouvertAutorise, int montantDecouvert, int solde, String nom)
         super(country,departement,city,specificAdress,email,phoneNumber,decouvert,montantDecouvertAutorise,montantDecouvert,solde,nom);
-        //this.stock = stock;
+        acquis = new ArrayList<Article>();
         note=0;
         recette =0;
     }
 
-    public boolean Achete(Entite entite, Article articleAVendre, boolean objectifVente, int quantiteVoulu) { // livraison
-        if (this.payeArticle(articleAVendre, quantiteVoulu)) { // on verifie qu'on a l'oseil
-                panier.addCommande();                              // on ajote au panier
-                entite.reflouer(articleAVendre.getPriceAvecQuantite(quantiteVoulu)); // le vendeur prend l'argent
-                if(objectifVente){ articleArray.add(articleAVendre);}                // on le met en vente s'il est necessaire
-            return true;
-        }
 
-        else {
-            System.out.println("Impossible de payer");
-            return false;
-
-        }
-    } // paye un unique type d'article avec sa quantite
-
-    public void reglerArticleChoisi(Professionel professionel, ArrayList articleChoisi, boolean[] objectifVente){
-        int i=0;
-        for(Article article : articleChoisi){
-
-            if( this.achete(professionel , article , objectifVente[i]) ) {
-                panier.remove(articleDuPanier);
-            }
-            else{
-                System.out.println("L'article n°"+i +" de type : " +articleDuPanier.getType()+ " de la categorie :" +articleDuPanier.getCategorie() + " de la commande ne peut etre payé.");
-            }
-            i++;
-        }
+    public addPanier(Article article, int quantite){
+        panier.addCommande(article, quantite);
     }
 
-    public boolean reglerPanier(){
+    public boolean reglerPanier(Professionnel professionnel){
         return this.payeCommande(panier);
     }
+
+    public
 
     public void acheteParticulier(Particulier particulier, Article article, boolean objectifVente){
         if(this.payeArticle(article, article.getQuantite() )){
@@ -75,9 +53,11 @@ public class Particulier extends Entite{
     }
 
 
-    public void mettreEnVente(Article articleAVendre){
-            articleArray.add(articleAVendre);
-        }
+    public void mettreEnVente(Article articleAVendre) {
+        int index = acquis.getOfIndex(articleAVendre);
+        acquis.remove(index);
+        articleArray.add(articleAVendre);
+    }
 
     public void noterVendeur(){ //on parcours les objets a vendre et on definit la note enfonction de l'etat de chaque objct
         double sommeEtat=0 ;

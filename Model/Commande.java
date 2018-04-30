@@ -95,11 +95,7 @@ public class Commande{
 	}
 
 
-	// modifs nathane
 
-    public void addArticle(Article article){
-        articlesCommande.add(article);
-    }
-    
+
     
 }
