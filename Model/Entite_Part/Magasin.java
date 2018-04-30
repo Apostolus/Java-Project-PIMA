@@ -6,6 +6,7 @@ public class Magasin extends Professionnel{
 
     @SuppressWarnings("unused")
 	private ArrayList<Article> panier;
+    private double recetteJ;
 
 
 

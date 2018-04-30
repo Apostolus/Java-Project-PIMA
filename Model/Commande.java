@@ -36,7 +36,7 @@ public class Commande{
     		return false;
     	}
     	
-    	int index = articlesCommande.indexOf(article);
+    	int index = articlesCommande.indexOf(article); // je prend l'index de l'articule
     	Article articleTemp = (articlesCommande.remove(index)).clone();
     	if(articlesCommande.contains(article)) {
     		articleTemp.incrementeQuantite(quantite);
@@ -53,7 +53,7 @@ public class Commande{
     
 
 
-    public void LancerCommande(Entrepot entrepot){
+    public void LancerCommande(Entrepot entrepot){                                                                      // ne necessie pas le paiement?
     	entrepot.addCommande(this);
     }
 
@@ -93,6 +93,13 @@ public class Commande{
     public void setNbCommande(int nbCommande) {
 		this.nbCommande = nbCommande;
 	}
+
+
+	// modifs nathane
+
+    public void addArticle(Article article){
+        articlesCommande.add(article);
+    }
     
     
 }

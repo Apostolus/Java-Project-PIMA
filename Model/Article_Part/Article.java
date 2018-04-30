@@ -4,7 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 public abstract class Article {
 
     protected final int id;
-    private static int nbArticle = 0;
+    private static int nbArticle = 0;                                                                                    // PQ STATIC ET PQ avoir le nb d'articles
     private String type;
     private String categorie;
     private String description;
@@ -25,7 +25,7 @@ public abstract class Article {
      * @param numeroSerie 
      */
 
-    protected Article(String type,String categorie, String description, Time timeOfPublish, double price,int quantite) {
+    protected Article(String type,String categorie, String description, Time timeOfPublish, double price,int quantite) { // PQ protected
         nbArticle++;
         this.id = nbArticle;
         this.type = type;
@@ -37,7 +37,7 @@ public abstract class Article {
         this.numeroDeSerie = ID_Gestion.generateArticleNumero(this);
     }
 
-    protected Article(Article article){
+    protected Article(Article article){                                                                                   // EST CE UN CONSTRUCTEUR PAR COPIE?
         this(article.type,article.categorie,article.description,article.timeOfPublish,article.price,article.quantite);
     }
 
@@ -57,7 +57,7 @@ public abstract class Article {
 
     /**
      *
-     * deux articles sont égaux s'ils sont de meme catégorie, type et sont dans le meme état.
+     * deux articles sont égaux s'ils sont de meme catégorie, type et sont dans le meme état.                                // le numero de serie !!!!!!!!!!!!!!! NUMS ET ETAT  on devrait abaisser l'etat des qu'il y a un acte de vente
      *
      * @param object
      * @return
@@ -120,6 +120,8 @@ public abstract class Article {
     public double getPrice() {
         return price;
     }
+
+    public double getPriceAvecQuantite(int quantiteDesire){return price*quantiteDesire;}
 
     public void setPrice(double price) {
         this.price = price;

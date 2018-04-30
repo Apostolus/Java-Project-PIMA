@@ -30,9 +30,19 @@ public abstract class Entite implements Acheter{
     }
     
     @Override
-	public boolean payer(Commande commande) {
+	public boolean payeCommande(Commande commande) {
  		return compteBanque.paye(commande.getTotalPrice());
  	}
+
+    public boolean payeMontant(double price) {
+        return compteBanque.paye(price);
+    }
+
+    public boolean payeArticle(Article article, int quantite) {
+        return compteBanque.paye(article, quantite);
+    }
+
+ 	//faire une methode reflouer
     
     
     public Cordonnees getCoordonnees() {
