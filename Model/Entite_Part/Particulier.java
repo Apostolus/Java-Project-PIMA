@@ -85,14 +85,6 @@ public class Particulier extends Entite{
         if(nbArticle != 0) note = (sommeEtat/nbArticle);
     }
 
-/*
-
-    public void ajouterArticleAchete(Entite e,Article a) {
-        if(e instanceof Particulier) acquisP.add(a);
-        else acquisM.add(a);
-    }
-
-*/
 
 
 
