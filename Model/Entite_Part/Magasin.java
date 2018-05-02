@@ -19,7 +19,7 @@ public class Magasin extends Professionnel{
     }
 
 	@Override
-	public boolean Achete(Entrepot entrepot, Article article, int quantite) {
+	public boolean Achete(Professionnel professionnel) {
 		// TODO Auto-generated method stub
 		return false;
 	}
