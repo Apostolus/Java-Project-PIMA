@@ -67,6 +67,7 @@ public class Particulier extends Entite{
 		return false;
 	}
 
+
 	@Override
 	public boolean payer(Commande commande) {
 		// TODO Auto-generated method stub
