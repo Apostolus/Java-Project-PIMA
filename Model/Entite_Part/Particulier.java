@@ -25,8 +25,6 @@ public class Particulier extends Entite{
         return this.payeCommande(panier);
     }
 
-    public
-
     public void acheteParticulier(Particulier particulier, Article article, boolean objectifVente){
         if(this.payeArticle(article, article.getQuantite() )){
             particulier.reflouer(article.getPriceAvecQuantite());
@@ -42,16 +40,10 @@ public class Particulier extends Entite{
         }
     }
 
-
     public Article retirerArticleVendu(Article a){
         int i= articleArray.(indexOf(a));
         if (this.paye((i!=-1)) return articleArray.remove(i);
     } // pour l'achat chez un particulier uniquement
-
-    public void ajouterAuxArticlesChoisis(Artcile article, Professionnel professionnel) {
-        articleChoisi.add(article);
-    }
-
 
     public void mettreEnVente(Article articleAVendre) {
         int index = acquis.getOfIndex(articleAVendre);
