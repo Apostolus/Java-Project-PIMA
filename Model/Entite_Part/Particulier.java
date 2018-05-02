@@ -17,12 +17,12 @@ public class Particulier extends Entite{
     }
 
 
-    public addPanier(Article article, int quantite){
-        panier.addCommande(article, quantite);
+    public boolean addPanier(Professionnel professionnel,Article article, int quantite){
+        return panier.addCommande(article, quantite, professionnel);
     }
 
     public boolean reglerPanier(Professionnel professionnel){
-        return this.payeCommande(panier);
+        return this.payeCommande(panier,professionnel);
     }
 
     public void acheteParticulier(Particulier particulier, Article article, boolean objectifVente){

@@ -15,10 +15,12 @@ public abstract class Professionnel extends Entite implements Vendre{
      }
      
      @Override
- 	public boolean envoyerCommande(Commande commande) {
- 		// TODO Auto-generated method stub
- 		
- 		return false;
+ 	public void livrerCommande(Commande commande) {
+    	 
+    	 Entite client = commande.getDestinataire();
+    	 for (Article article : commande.articlesCommande) {
+    		 client.addArticleArray(article, article.getQuantite());
+    	 }
  	}
      
      @Override

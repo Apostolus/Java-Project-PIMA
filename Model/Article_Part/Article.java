@@ -107,7 +107,9 @@ public String getType() {
         return price;
     }
 
-    public double getPriceAvecQuantite(int quantiteDesire){return price*quantiteDesire;}
+    public double getPriceAvecQuantite(){
+    	return price*quantite;
+    }
 
     public void setPrice(double price) {
         this.price = price;

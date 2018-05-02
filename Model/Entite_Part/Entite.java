@@ -54,6 +54,9 @@ public abstract class Entite implements Acheter{
 
  	//faire une methode reflouer
     
+    public void addToAccount(double montant) {
+    	compteBanque.reflouer(montant);
+    }
     
     public Cordonnees getCoordonnees() {
         return coordonnees;

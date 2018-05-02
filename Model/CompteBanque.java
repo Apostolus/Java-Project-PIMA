@@ -63,7 +63,7 @@ public class CompteBanque{
     }
 
     //fonction pour remplir le compte, lorsqu'un acheteur achete a un vendeur par exemple
-    public void reflouer(int montant) {
+    public void reflouer(double montant) {
         if (montantDecouvert < montantDecouvertAutorise) {
             if (montantDecouvert + montant < montantDecouvertAutorise)
                 montantDecouvert += montant;
