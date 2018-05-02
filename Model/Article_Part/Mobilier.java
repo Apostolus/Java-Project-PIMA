@@ -1,8 +1,18 @@
-package apostolus.application_vente;
+public class Mobilier extends Article {
+	
 
-public abstract class Mobilier extends Article {
-
-    protected Mobilier(String type, String categorie, String description, Time timeOfPublish, double price) {
-        super("Mobilier", categorie, description, timeOfPublish, price);
+    public Mobilier(String type, String description, Time timeOfPublish, double price, int quantite) {
+        super("Mobilier", type, description, timeOfPublish, price);
+        super.quantite = quantite;
     }
+    
+    public Mobilier() {
+    	this("type","description",new Time(),0.0,0);
+    }
+    
+    public Mobilier(Mobilier mobilier) {
+    	this(mobilier.type,mobilier.description,mobilier.timeOfPublish,mobilier.price,mobilier.quantite);
+    }
+    
+    
 }

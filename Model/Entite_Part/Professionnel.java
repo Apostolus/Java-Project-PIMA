@@ -24,11 +24,17 @@ public abstract class Professionnel extends Entite implements Vendre{
      @Override
      public boolean verifierDisponibilite(Article article, int quantite) {
      	if(articleArray.contains(article)) {
-     		int index_art = articleArray.indexOf(article);
-     
-     		if((articleArray.get(index_art).getQuantite())>=quantite) {
-     			return true;
+     		
+     		if(article instanceof Mobilier) {
+     			int index_art = articleArray.indexOf(article);
+     			Article temp = articleArray.get(index_art);
+     			
+     			if(((Mobilier)temp).getQuantite()>=quantite) {
+     				return true;
+     			}
+     			return false;
      		}
+     		return true;
      	}
      	return false;
      }

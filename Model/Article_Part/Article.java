@@ -1,18 +1,15 @@
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-
 public abstract class Article {
 
     protected final int id;
-    private static int nbArticle = 0;                                                                                    // PQ STATIC ET PQ avoir le nb d'articles
-    private String type;
-    private String categorie;
-    private String description;
-    private Time timeOfPublish;
-    private double price;
-    private int quantite;
-    private int etat;
-    private String numeroDeSerie;
+    private static int nbArticle = 0;
+    protected String type;
+    protected String categorie;
+    protected String description;
+    protected Time timeOfPublish;
+    protected double price;
+    protected int etat;
+    protected String numeroDeSerie;
+    protected int quantite;
     
     /**
      * 
@@ -21,11 +18,10 @@ public abstract class Article {
      * @param description
      * @param timeOfPublish
      * @param price
-     * @param quantite
      * @param numeroSerie 
      */
 
-    protected Article(String type,String categorie, String description, Time timeOfPublish, double price,int quantite) { // PQ protected
+    protected Article(String type,String categorie, String description, Time timeOfPublish, double price) { // PQ protected
         nbArticle++;
         this.id = nbArticle;
         this.type = type;
@@ -33,26 +29,12 @@ public abstract class Article {
         this.timeOfPublish = timeOfPublish;
         this.categorie = categorie;
         this.price = price;
-        this.quantite = quantite;
-        this.numeroDeSerie = ID_Gestion.generateArticleNumero(this);
+        this.numeroDeSerie = categorie.substring(0)+"-"+type.substring(0,2)+"-"+id;
+        this.quantite = 1;
     }
 
     protected Article(Article article){                                                                                   // EST CE UN CONSTRUCTEUR PAR COPIE?
-        this(article.type,article.categorie,article.description,article.timeOfPublish,article.price,article.quantite);
-    }
-
-    @Override
-    public Article clone(){
-    	Class<?> classe = this.getClass();
-    	Constructor<?> constructor;
-		try {
-			constructor = classe.getConstructor(Article.class);
-			return (Article)constructor.newInstance(this);
-		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException
-				| InvocationTargetException exceptionClone) {
-            exceptionClone.printStackTrace();
-        }
-		return null;
+        this(article.type,article.categorie,article.description,article.timeOfPublish,article.price);
     }
 
     /**
@@ -65,12 +47,10 @@ public abstract class Article {
     
     @Override
     public boolean equals(Object object) {
-    	
-    	if(super.equals(object)) {
-    		Article article = (Article)object;
-    		if(this.categorie.equals(article.categorie) && this.type.equals(article.type) && this.etat == article.etat) {
-    			return true;
-    		}
+
+    	Article article = (Article)object;
+    	if(this.categorie.equals(article.categorie) && this.type.equals(article.type) && this.etat == article.etat) {
+    		return true;
     	}
     	return false;
     }
@@ -80,7 +60,13 @@ public abstract class Article {
      * @return
      */
     
-    public String getType() {
+    
+    @Override
+    public String toString() {
+    	return "id : "+id+", type: "+", type : "+type+", categorie : "+categorie+", Date : "+description+timeOfPublish.getStringDateEtHeureFormat()+",price : "+price+", Serie : "+numeroDeSerie+", état : "+etat+", quantite : "+quantite;
+    }
+    
+public String getType() {
         return type;
     }
     
@@ -127,18 +113,6 @@ public abstract class Article {
         this.price = price;
     }
 
-    public int getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
-    }
-    
-    public void incrementeQuantite(int quantiteAjoute) {
-    	this.quantite+=quantiteAjoute;
-    }
-
     public int getEtat() {
         return etat;
     }
@@ -150,4 +124,16 @@ public abstract class Article {
     public String getNumeroDeSerie() {
 		return numeroDeSerie;
 	}
+    
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+    
+    public void incrementeQuantite(int quantiteAjoute) {
+    	this.quantite+=quantiteAjoute;
+    }
 }

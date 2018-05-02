@@ -20,7 +20,7 @@ public class Time{
 		return FORMAT_DATE.format(this.date);
 	}
 
-	public String getStringDateEtHeureFormat(Date date) {
+	public String getStringDateEtHeureFormat() {
 		return HEURE_DATE.format(this.date);
 	}
 

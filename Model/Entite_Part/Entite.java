@@ -22,15 +22,23 @@ public abstract class Entite implements Acheter{
     
     protected void addArticleArray(Article article, int quantiteAjoute) {
     	if(articleArray.contains(article)) {
-    		
     		int index_art = articleArray.indexOf(article);
-    		Article article_temp = articleArray.remove(index_art);
-    		article_temp.incrementeQuantite(quantiteAjoute);
+			Article article_temp = articleArray.remove(index_art);
+    		
+    		if(article instanceof Mobilier) {
+    			article_temp.incrementeQuantite(quantiteAjoute);
+    		}
+    		articleArray.add(article_temp);
     	}
+    	
+    	article.setQuantite(quantiteAjoute);
+    	articleArray.add(article);
+    
     }
     
     @Override
-	public boolean payeCommande(Commande commande) {
+	public boolean payeCommande(Commande commande,Professionnel professionnel) {
+
  		return compteBanque.paye(commande.getTotalPrice());
  	}
 
@@ -58,4 +66,5 @@ public abstract class Entite implements Acheter{
 	public int getId() {
 		return id;
 	}
+	
 }

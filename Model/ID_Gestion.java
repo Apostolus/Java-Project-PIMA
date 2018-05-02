@@ -9,13 +9,15 @@ public class ID_Gestion {
      * si c'est un mobilier c'est la lettre M qui commence sinon la lettre I
      * la seconde partie est faite par les 3 premières lettres de son type
      * puis la dernière son id.
+     * @param categorie TODO
+     * @param type TODO
+     * @param id TODO
      * 
-     * @param article
      * @return
      */
 	
-	public static String generateArticleNumero(Article article) {
-		return article.getCategorie().substring(0)+"-"+article.getType().substring(0,2)+"-"+article.id;
+	public static String generateArticleNumero(String categorie, String type, int id) {
+		return null;
 	}
 	
 	/**
@@ -27,7 +29,7 @@ public class ID_Gestion {
 	 */
 	
 	public static String generateArticleNumCommande(Time time, int nbCommande, Entite entite) {
-		return time.getStringDateFormat()+"-"+nbCommande+"-"+entite.getId();
+		return null;
 	}
 	
 

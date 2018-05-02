@@ -1,15 +1,24 @@
-package apostolus.application_vente;
 
-public abstract class Immobilier extends Article {
+public class Immobilier extends Article {
 
-    private Localisation localisation;
     private double Totalesurface;
 
 
-    public Immobilier(String categorie, String description, Time timeOfPublish, double price) {
+    public Immobilier(String type, String description, Time timeOfPublish, double price, double surface) {
 
-        super("Immbolier",categorie, description, timeOfPublish,price);
+        super(type,"Immbolier", description, timeOfPublish,price);
+        this.Totalesurface = surface;
     }
-
-
+    
+    public Immobilier() {
+    	this("type","description",new Time(),0.0,0);
+    }
+    
+    public double getTotalesurface() {
+		return Totalesurface;
+	}
+    
+    public void setTotalesurface(double totalesurface) {
+		Totalesurface = totalesurface;
+	}
 }

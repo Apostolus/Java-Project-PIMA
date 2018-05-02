@@ -2,7 +2,7 @@ public class CompteBanque{
     private static int id = 0;
     private final String numero; // je vais à la fin personnaliser le numéro du compte bancaire en fonction de l'entité
     private boolean decouvert;
-    private int final montantDecouvertAutorise;  // la limite maximal autorise
+    private int montantDecouvertAutorise;  // la limite maximal autorise
     private int montantDecouvert;     //le montant courant de decouvert
     private int solde;
     
