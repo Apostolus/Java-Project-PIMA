@@ -3,7 +3,7 @@ public class Electromenager extends Mobilier {
     private Time dureGarantie;
 
     public Electromenager(String type, String description, Time timeOfPublish, double price, int quantite, String nom, String marque, int taille, int puissance){
-        super("Electromenager", "Mobilier", description, timeOfPublish, price, quantite, nom, marque);
+        super("Electromenager", description, timeOfPublish, price, quantite, nom, marque);
         this.taille = taille;
         this.puissance = puissance;
         this.FinGarantie = new Time();
@@ -22,6 +22,8 @@ public class Electromenager extends Mobilier {
     public int getDureGarantie() {
         return dureGarantie;
     }
+
+
 
 
 
