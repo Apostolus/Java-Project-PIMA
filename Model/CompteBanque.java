@@ -1,4 +1,9 @@
 public class CompteBanque{
+	
+	private final int PAIEMENT_NON_AUTORISE = -1;
+	private final int PAIEMENT_AUTORISE = 0;
+	private final int PAIEMENT_AUTORISE_AVEC_DECOUVERT = 1;
+	
     private static int id = 0;
     private final String numero; // je vais à la fin personnaliser le numéro du compte bancaire en fonction de l'entité
     private boolean decouvert;
@@ -34,33 +39,36 @@ public class CompteBanque{
     // diminue le solde par le prix du Article a
     public boolean paye(Article article,int quantite) {   // le cas ou il a pas l'argent alors on renvoie un false tq dans la fonction acheter(Article) on appel la fonction paye
     	
-    	double price = article.getPrice()*quantite;
+    	return paye(article.getPrice()*quantite);
     	
-        if (solde > price){
-            solde -= price;
-            return true;
-        }
-        if (decouvert && montantDecouvert >= price) {
-            solde -= price;
-            montantDecouvert -= price;
-            return true;
-        }
-        return false;
     }
     
     public boolean paye(double price) {
     	
-    	if (solde > price){
-            solde -= price;
-            return true;
-        }
-        if (decouvert && montantDecouvert >= price) {
-            solde -= price;
-            montantDecouvert -= price;
-            return true;
-        }
-        return false;
+    	switch (verifierPaiement(price)) {
+		case PAIEMENT_AUTORISE:
+			solde-=price;
+			return true;
+			
+		case PAIEMENT_AUTORISE_AVEC_DECOUVERT:
+			montantDecouvert -= (price - solde);
+			solde-=price;
+			return true;
+
+		case PAIEMENT_NON_AUTORISE:
+			return false;
+
+			default:
+			    return false;
+		}
     }
+    
+    /**
+     * 
+     * 
+     * 
+     * @param montant
+     */
 
     //fonction pour remplir le compte, lorsqu'un acheteur achete a un vendeur par exemple
     public void reflouer(double montant) {
@@ -75,6 +83,18 @@ public class CompteBanque{
         } else {
             solde += montant;
         }
+    }
+    
+    public int verifierPaiement(double price) {
+    	
+    	if(solde>price) {
+    		return PAIEMENT_AUTORISE;
+    	}
+    	else if(decouvert && montantDecouvert>=price) {
+    		return PAIEMENT_AUTORISE_AVEC_DECOUVERT;
+    	}
+    	
+    	return PAIEMENT_NON_AUTORISE;
     }
 
     //GETTERS

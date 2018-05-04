@@ -49,10 +49,15 @@ public abstract class Entite implements Acheter{
     public boolean payeArticle(Article article, int quantite) {
         return compteBanque.paye(article, quantite);
     }
-
-
-
- 	//faire une methode reflouer
+    
+    public boolean verifierPaiement(double price) {
+    	
+    	int verifier = compteBanque.verifierPaiement(price);
+    	if(verifier == 0 || verifier == 1) {
+    		return true;
+    	}
+    	return false;
+    }
     
     public void addToAccount(double montant) {
     	compteBanque.reflouer(montant);

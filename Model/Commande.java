@@ -2,20 +2,20 @@ import java.util.ArrayList;
 
 public class Commande{
 
-	private int nbCommande;
+	private static int nbCommande = 0;
     private final String numCommande;
     private Time dateDeCommande;
     private Entite destinataire;
-    private ArrayList<Article> articlesCommande;
+    public ArrayList<Article> articlesCommande;
     private Time timeOfCommande;
 
-    public Commande(Entite destinataire,int quantite, int nbCommande) {
-    	this.nbCommande = nbCommande;
+    public Commande(Entite destinataire) {
+    	nbCommande++;
         this.dateDeCommande = new Time();
         this.destinataire = destinataire;
         this.articlesCommande = new ArrayList<>();
         this.timeOfCommande = new Time();
-        this.numCommande = ID_Gestion.generateArticleNumCommande(timeOfCommande, nbCommande, destinataire);
+        this.numCommande = timeOfCommande.getStringDateFormat()+"-"+nbCommande+"-"+destinataire.getId();
     }
 
     /**
@@ -26,25 +26,31 @@ public class Commande{
      *
      * @param article
      * @param quantite
-     * @param entrepot
+     * @param professionnel
      */
     
-    public boolean addCommande(Article article,int quantite,Entrepot entrepot) {
+    public boolean addCommande(Article article,int quantite,Professionnel professionnel) {
     	
     	
-    	if(!entrepot.verifierDisponibilite(article, quantite)) {
+    	if(!professionnel.verifierDisponibilite(article, quantite)) {
     		return false;
     	}
-    	
-    	int index = articlesCommande.indexOf(article); // je prend l'index de l'articule
-    	Article articleTemp = (articlesCommande.remove(index)).clone();
+    
     	if(articlesCommande.contains(article)) {
-    		articleTemp.incrementeQuantite(quantite);
+    		int index = articlesCommande.indexOf(article); // je prend l'index de l'articule
+        	Article articleTemp = articlesCommande.remove(index);
+        	
+        	if(articleTemp instanceof Mobilier) {
+        		((Mobilier)articleTemp).incrementeQuantite(quantite);
+        	}
     		articlesCommande.add(articleTemp);
     		return true;
     	}
     	else {
-    		article.setQuantite(quantite);
+    		
+    		if(article instanceof Mobilier) {
+        		((Mobilier)article).incrementeQuantite(quantite);
+        	}
     		articlesCommande.add(article);
     		return true;
     	}
@@ -81,7 +87,12 @@ public class Commande{
     	double price = 0.;
     	
     	for(Article article : articlesCommande) {
-    		price+= (article.getPrice()*article.getQuantite());
+    		
+    		int quantite = 1;
+    		if(article instanceof Mobilier) {
+    			quantite = ((Mobilier)article).getQuantite();
+    		}
+    		price+= (article.getPrice()*quantite);
     	}
     	return price;
     }
@@ -89,17 +100,14 @@ public class Commande{
     public int getNbCommande() {
 		return nbCommande;
 	}
-    
-    public void setNbCommande(int nbCommande) {
-		this.nbCommande = nbCommande;
-	}
-
 
 	// modifs nathane
-
+/*
     public void addArticle(Article article){
         articlesCommande.add(article);
     }
+    
+    */
     
     
 }

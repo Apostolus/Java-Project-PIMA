@@ -2,55 +2,77 @@ import java.util.ArrayList;
 
 public class Particulier extends Entite{
 
-    private static int nb_personnes = 0;
     private double note;
-    private int stock;
-    private double recette;                                   // recette journaliere
+    //private int stock;
+    //private double recette;                                   // recette journaliere
     private Commande panier;                                  // la commande qui sera envoyer a un PROFESSIONNEL
     private ArrayList<Article> acquis;
 
     public Particulier(String country, String departement, String city, String specificAdress, String email, String phoneNumber,boolean decouvert, int montantDecouvertAutorise, int montantDecouvert, int solde, String nom) {
         super(country,departement,city,specificAdress,email,phoneNumber,decouvert,montantDecouvertAutorise,montantDecouvert,solde,nom);
-        acquis = new ArrayList<Article>();
-        note=0;
-        recette =0;
+        this.acquis = new ArrayList<Article>();
+        this.note=0;
+       // recette =0;
     }
 
 
     public boolean addPanier(Professionnel professionnel,Article article, int quantite){
         return panier.addCommande(article, quantite, professionnel);
     }
-
-    public boolean reglerPanier(Professionnel professionnel){
-        return this.payeCommande(panier,professionnel);
+ 
+    
+    /**
+     * 
+     * TODO --On pourra rappeler à la suite les méthodes qui mettent en communication les deux paticuliers, 
+     * pour finaliser la vente.
+     * pour le moment, achèter à un particulier, reviens à payer le montant d'un article précis dont l'existence
+     * est assurée.
+     * 
+     * cette méthode revoie un booléen, si c'est vraie, le particulier à qui on achète peut procèder à la livraison.
+     * le temps de livraison est déterminé par les deux (entente entre les deux personnes).
+     * 
+     * @param particulier
+     * @param article
+     * @return
+     */
+    
+    public boolean acheteParticulier(Particulier particulier, Article article) {
+    	
+    	double price = article.getPriceAvecQuantite();
+    	if(this.verifierPaiement(price)) {
+    		this.payeMontant(price);
+    		particulier.addToAccount(price);
+    		return true;
+    	}
+    	
+    	return false;
     }
     
     /**
      * 
-     * on considère que le particulier a déjà l'article
-     * 
-     * @param particulier
      * @param article
-     * @param objectifVente
+     * @return
      */
-
-    public boolean acheteParticulier(Particulier particulier, Article article){
-        if(this.payeArticle(article, article.getQuantite() )){
-            particulier.addToAccount(article.getPriceAvecQuantite());
-            return true;
-        }
-        return false;
-    }
 
     public Article retirerArticleVendu(Article article){
         int index = articleArray.indexOf(article);
         return articleArray.remove(index);
     }
+    
+    /**
+     * 
+     * @param articleAVendre
+     */
 
     public void mettreEnVente(Article articleAVendre) {
         int index = acquis.indexOf(articleAVendre);
         articleArray.add(acquis.remove(index));
     }
+    
+    /**
+     * 
+     * 
+     */
 
     public void noterVendeur(){ //on parcours les objets a vendre et on definit la note enfonction de l'etat de chaque objct
         double sommeEtat=0 ;
@@ -59,16 +81,22 @@ public class Particulier extends Entite{
             sommeEtat+= articleEnVente.getEtat();
             nbArticle++;
         }
-        if(nbArticle != 0) note = (sommeEtat/nbArticle);
+        if(nbArticle != 0) this.note = (sommeEtat/nbArticle);
     }
+    
+    /**
+     * 
+     */
 
 	@Override
 	public boolean Achete(Professionnel professionnel) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.payeCommande(panier,professionnel);
 	}
 
-
+	/**
+	 * 
+	 */
+	
 	@Override
 	public boolean payer(Commande commande) {
 		// TODO Auto-generated method stub
