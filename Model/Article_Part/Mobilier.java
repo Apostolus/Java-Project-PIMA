@@ -1,9 +1,12 @@
 public class Mobilier extends Article {
-	
+	private String nomMobilier;
+	private String marque;
 
-    public Mobilier(String type, String description, Time timeOfPublish, double price, int quantite) {
-        super("Mobilier", type, description, timeOfPublish, price);
+    public Mobilier(String type, String description, Time timeOfPublish, double price, int quantite, String nomMobilier, String marque) {
+        super(type, "Mobilier", description, timeOfPublish, price);
         super.quantite = quantite;
+        this.nomMobilier = nomMobilier;
+        this.marque = marque;
     }
     
     public Mobilier() {
