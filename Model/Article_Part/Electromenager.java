@@ -2,10 +2,9 @@ public class Electromenager extends Mobilier {
     private int taille, puissance;
 
     public Electromenager(String type, String description, Time timeOfPublish, double price, int quantite, String nom, String marque, int taille, int puissance){
-        super("Electromenager", description, timeOfPublish, price, quantite, nom, marque);
+        super("Electromenager", description, timeOfPublish, price, quantite, nom, marque, null);
         this.taille = taille;
         this.puissance = puissance;
-        this.FinGarantie = new Time();
         //FinGarantie = FinGarantie.extraiteDateFromString(date):
 
     }
@@ -16,10 +15,6 @@ public class Electromenager extends Mobilier {
 
     public int getPuissance() {
         return puissance;
-    }
-
-    public int getDureGarantie() {
-        return dureGarantie;
     }
 
 }

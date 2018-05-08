@@ -7,7 +7,7 @@ public class Immobilier extends Article {
 
     public Immobilier(String type, String description, Time time, double price, double surface) {
 
-        super(type, "Immbolier", description, time,price);
+        super(type, "Immbolier", description, time,price, null);
         this.Totalesurface = surface;
     }
     

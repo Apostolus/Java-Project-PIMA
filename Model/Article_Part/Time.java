@@ -1,6 +1,7 @@
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Time{
@@ -47,5 +48,21 @@ public class Time{
     
     public void actualiseDateToCurrent() {
     	this.date = new Date();
+    }
+    
+    @SuppressWarnings("deprecation")
+	public Date addToCurrent(Date date) {
+    	
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.setTime(this.date);
+    	calendar.add(Calendar.SECOND, date.getSeconds());
+    	calendar.add(Calendar.MINUTE, date.getMinutes());
+    	calendar.add(Calendar.HOUR, date.getHours());
+    	calendar.add(Calendar.DAY_OF_MONTH, date.getDay());
+    	calendar.add(Calendar.MONTH, date.getMonth());
+    	calendar.add(Calendar.YEAR, date.getYear());
+    	
+    	return calendar.getTime();
+    	
     }
 }

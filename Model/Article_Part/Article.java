@@ -18,6 +18,7 @@ public abstract class Article {
     protected int etat;
     protected String numeroDeSerie;
     protected int quantite;
+    private String nomArticle;
     
     /**
      * 
@@ -26,10 +27,11 @@ public abstract class Article {
      * @param description
      * @param timeOfPublish
      * @param price
+     * @param nomArticle TODO
      * @param numeroSerie 
      */
 
-    protected Article(String type,String categorie, String description, Time timeOfPublish, double price) { // PQ protected
+    protected Article(String type,String categorie, String description, Time timeOfPublish, double price, String nomArticle) { // PQ protected
         nbArticle++;
         this.id = nbArticle;
         this.type = type;
@@ -39,10 +41,11 @@ public abstract class Article {
         this.price = price;
         this.numeroDeSerie = categorie.substring(0)+"-"+type.substring(0,2)+"-"+id;
         this.quantite = 1;
+        this.nomArticle = nomArticle;
     }
 
     protected Article(Article article){                                                                                   // EST CE UN CONSTRUCTEUR PAR COPIE?
-        this(article.type,article.categorie,article.description,article.time,article.price);
+        this(article.type,article.categorie,article.description,article.time,article.price, null);
     }
 
     /**
@@ -146,4 +149,8 @@ public String getType() {
     public void incrementeQuantite(int quantiteAjoute) {
     	this.quantite+=quantiteAjoute;
     }
+    
+    public String getNomArticle() {
+		return nomArticle;
+	}
 }
