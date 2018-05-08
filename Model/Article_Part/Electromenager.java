@@ -1,6 +1,5 @@
 public class Electromenager extends Mobilier {
     private int taille, puissance;
-    private Time dureGarantie;
 
     public Electromenager(String type, String description, Time timeOfPublish, double price, int quantite, String nom, String marque, int taille, int puissance){
         super("Electromenager", description, timeOfPublish, price, quantite, nom, marque);
@@ -22,10 +21,5 @@ public class Electromenager extends Mobilier {
     public int getDureGarantie() {
         return dureGarantie;
     }
-
-
-
-
-
 
 }

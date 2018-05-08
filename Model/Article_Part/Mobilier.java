@@ -1,6 +1,7 @@
 public class Mobilier extends Article {
 	private String nomMobilier;
 	private String marque;
+	private Time dureeGarantie;
 
     public Mobilier(String type, String description, Time timeOfPublish, double price, int quantite, String nomMobilier, String marque) {
         super(type, "Mobilier", description, timeOfPublish, price);
