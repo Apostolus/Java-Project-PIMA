@@ -26,13 +26,13 @@ public class Commande{
      *
      * @param article
      * @param quantite
-     * @param professionnel
+     * @param entite
      */
     
-    public boolean addCommande(Article article,int quantite,Professionnel professionnel) {
+    public boolean addCommande(Article article,int quantite,Entite entite) {
     	
     	
-    	if(!professionnel.verifierDisponibilite(article, quantite)) {
+    	if(!entite.verifierDisponibilite(article, quantite)) {
     		return false;
     	}
     
@@ -45,6 +45,7 @@ public class Commande{
         	}
     		articlesCommande.add(articleTemp);
     		return true;
+    		
     	}
     	else {
     		

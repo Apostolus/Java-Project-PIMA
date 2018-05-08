@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class Entite implements Acheter{
+public abstract class Entite implements Acheter, Vendre{
 
 	private static int entiteNumber = 0;
 	private final int id;
@@ -8,6 +8,7 @@ public abstract class Entite implements Acheter{
     protected Cordonnees coordonnees;
     private CompteBanque compteBanque;
     protected ArrayList<Article> articleArray;
+    protected ArrayList<Commande> commandes;
 
 
     protected Entite(String country, String departement, String city, String specificAdress, String email, String phoneNumber,boolean decouvert, int montantDecouvertAutorise, int montantDecouvert, int solde, String nom) {
@@ -17,6 +18,30 @@ public abstract class Entite implements Acheter{
         this.articleArray = new ArrayList<>();
         this.nom = nom;
         this.id = entiteNumber;
+        this.commandes = new ArrayList<>();
+    }
+    
+    @Override
+    public void addCommande(Commande commande) {
+    	commandes.add(commande);
+    }
+    
+    @Override
+    public boolean verifierDisponibilite(Article article, int quantite) {
+    	if(articleArray.contains(article)) {
+    		
+    		if(article instanceof Mobilier) {
+    			int index_art = articleArray.indexOf(article);
+    			Article temp = articleArray.get(index_art);
+    			
+    			if(((Mobilier)temp).getQuantite()>=quantite) {
+    				return true;
+    			}
+    			return false;
+    		}
+    		return true;
+    	}
+    	return false;
     }
 
     

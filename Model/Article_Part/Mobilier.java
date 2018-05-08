@@ -11,7 +11,7 @@ public class Mobilier extends Article {
     }
     
     public Mobilier(Mobilier mobilier) {
-    	this(mobilier.type,mobilier.description,mobilier.timeOfPublish,mobilier.price,mobilier.quantite);
+    	this(mobilier.type,mobilier.description,mobilier.time,mobilier.price,mobilier.quantite);
     }
     
     

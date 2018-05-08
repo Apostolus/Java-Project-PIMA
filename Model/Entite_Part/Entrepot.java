@@ -11,7 +11,7 @@ public class Entrepot extends Professionnel{
     }
 
 	@Override
-	public boolean Achete(Professionnel professionnel) {
+	public boolean achete(Professionnel professionnel) {
 		// TODO Auto-generated method stub
 		return false;
 	}

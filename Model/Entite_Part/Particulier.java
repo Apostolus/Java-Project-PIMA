@@ -3,8 +3,6 @@ import java.util.ArrayList;
 public class Particulier extends Entite{
 
     private double note;
-    //private int stock;
-    //private double recette;                                   // recette journaliere
     private Commande panier;                                  // la commande qui sera envoyer a un PROFESSIONNEL
     private ArrayList<Article> acquis;
 
@@ -12,9 +10,7 @@ public class Particulier extends Entite{
         super(country,departement,city,specificAdress,email,phoneNumber,decouvert,montantDecouvertAutorise,montantDecouvert,solde,nom);
         this.acquis = new ArrayList<Article>();
         this.note=0;
-       // recette =0;
     }
-
 
     public boolean addPanier(Professionnel professionnel,Article article, int quantite){
         return panier.addCommande(article, quantite, professionnel);
@@ -36,15 +32,16 @@ public class Particulier extends Entite{
      * @return
      */
     
-    public boolean acheteParticulier(Particulier particulier, Article article) {
+    public boolean achete(Particulier particulier) {
     	
-    	double price = article.getPriceAvecQuantite();
+    	double price = panier.getTotalPrice();
     	if(this.verifierPaiement(price)) {
-    		this.payeMontant(price);
-    		particulier.addToAccount(price);
-    		return true;
+    		
+    			this.payeMontant(price);
+    			particulier.addToAccount(price);
+    			particulier.addCommande(panier);
+    			return true;
     	}
-    	
     	return false;
     }
     
@@ -89,7 +86,7 @@ public class Particulier extends Entite{
      */
 
 	@Override
-	public boolean Achete(Professionnel professionnel) {
+	public boolean achete(Professionnel professionnel) {
 		return this.payeCommande(panier,professionnel);
 	}
 
@@ -101,6 +98,13 @@ public class Particulier extends Entite{
 	public boolean payer(Commande commande) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+	@Override
+	public void livrerCommande(Commande commande) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

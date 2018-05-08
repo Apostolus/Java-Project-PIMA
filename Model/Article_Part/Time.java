@@ -45,4 +45,8 @@ public class Time{
     	
     	return date;
     }
+    
+    public void actualiseDateToCurrent() {
+    	this.date = new Date();
+    }
 }

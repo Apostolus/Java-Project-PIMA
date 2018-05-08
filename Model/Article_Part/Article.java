@@ -1,11 +1,19 @@
 public abstract class Article {
+	
+	/**
+	 * 
+	 * l'attribut time : Time, si l'article est chez le vendeur,
+	 * cet attribut désigne le temps de mis en ligne du produit,
+	 * si il est chez l'acheteur il désigne le temps(date d'achat).
+	 * 
+	 */
 
     protected final int id;
     private static int nbArticle = 0;
     protected String type;
     protected String categorie;
     protected String description;
-    protected Time timeOfPublish;
+    protected Time time;
     protected double price;
     protected int etat;
     protected String numeroDeSerie;
@@ -26,7 +34,7 @@ public abstract class Article {
         this.id = nbArticle;
         this.type = type;
         this.description = description;
-        this.timeOfPublish = timeOfPublish;
+        this.time = timeOfPublish;
         this.categorie = categorie;
         this.price = price;
         this.numeroDeSerie = categorie.substring(0)+"-"+type.substring(0,2)+"-"+id;
@@ -34,7 +42,7 @@ public abstract class Article {
     }
 
     protected Article(Article article){                                                                                   // EST CE UN CONSTRUCTEUR PAR COPIE?
-        this(article.type,article.categorie,article.description,article.timeOfPublish,article.price);
+        this(article.type,article.categorie,article.description,article.time,article.price);
     }
 
     /**
@@ -63,7 +71,7 @@ public abstract class Article {
     
     @Override
     public String toString() {
-    	return "id : "+id+", type: "+", type : "+type+", categorie : "+categorie+", Date : "+description+timeOfPublish.getStringDateEtHeureFormat()+",price : "+price+", Serie : "+numeroDeSerie+", état : "+etat+", quantite : "+quantite;
+    	return "id : "+id+", type: "+", type : "+type+", categorie : "+categorie+", Date : "+description+time.getStringDateEtHeureFormat()+",price : "+price+", Serie : "+numeroDeSerie+", état : "+etat+", quantite : "+quantite;
     }
     
 public String getType() {
@@ -88,11 +96,11 @@ public String getType() {
     }
 
     public Time getTimeOfPublish() {
-        return timeOfPublish;
+        return time;
     }
 
     public void setTimeOfPublish(Time timeOfPublish) {
-        this.timeOfPublish = timeOfPublish;
+        this.time = timeOfPublish;
     }
 
     public String getCategorie() {
