@@ -36,6 +36,8 @@ public class CompteBanque{
      * @return
      */
 
+    //verifier si il faut payer
+
     // diminue le solde par le prix du Article a
     public boolean paye(Article article,int quantite) {   // le cas ou il a pas l'argent alors on renvoie un false tq dans la fonction acheter(Article) on appel la fonction paye
     	

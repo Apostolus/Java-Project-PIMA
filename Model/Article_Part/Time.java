@@ -15,7 +15,6 @@ public class Time{
 		this.date = new Date();
 	}
 
-
 	public String getStringDateFormat() {
 		return FORMAT_DATE.format(this.date);
 	}
