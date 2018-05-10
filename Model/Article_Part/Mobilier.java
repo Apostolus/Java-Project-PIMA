@@ -1,4 +1,3 @@
-import java.util.Calendar;
 import java.util.Date;
 
 public class Mobilier extends Article {
@@ -12,26 +11,58 @@ public class Mobilier extends Article {
         this.dureeGarantie = garantieDuration;
     }
     
+    /**
+     * constructeur de test avec les valeur par défaut.
+     * 
+     */
+    
     public Mobilier() {
-    	this("type","description",new Time(),0.0,0, null, null, null);
+    	this("type","description",new Time(),0.0,0, null, "marque", new Time());
     }
     
+     /**
+      * Constructeur par copie.
+      * 
+      * @param mobilier
+      */
     public Mobilier(Mobilier mobilier) {
     	this(mobilier.type,mobilier.description,mobilier.time,mobilier.price,mobilier.quantite, mobilier.getNomArticle(), mobilier.marque, null);
     }
     
-    @SuppressWarnings("deprecation")
-	public Time garantieTimeRemaining() {
+    
+    
+    /**
+     * sur cette méthode, on suppose qu'on a déjà testé que la garantie est encore valide.
+     * elle retourne la date de fin de garantie.
+     * 
+     * @return
+     */
+    
+	public Date garantieTimeRemaining() {
     	
-    	Date dateOfBuy = (this.getTimeOfPublish()).getDate();
-    	Date dateForGarantie = dureeGarantie.getDate();
-    	if(dateOfBuy.getYear()>=dateForGarantie.getYear()) {
-    		if(dateOfBuy.getMonth()>=dateForGarantie.getMonth()) {
-    			
-    		}
+    	return (new Time()).addToCurrent(dureeGarantie.getDate());
+    }
+	
+	
+	
+	/**
+	 * cette méthode teste si la garantie est encore valide, elle retourne true si ele l'est,
+	 * false sinon.
+	 * 
+	 * elle pourra servir dans les cas on a besoin de savoir quand est ce que la garantie de l'article en question va se terminer.
+	 * 
+	 * @return
+	 */
+    
+    public boolean garantieIsAvailable() {
+    	
+    	Date timeNow = new Date();
+    	Date tillBuy = (this.getTimeOfPublish()).addToCurrent(dureeGarantie.getDate());
+    	
+    	if(timeNow.compareTo(tillBuy) == -1) {
+    		return true;
     	}
-    	
-    	return null;
+    	return false;
     }
     
     
