@@ -30,4 +30,5 @@ public class FondDeCommerce extends Immobilier{
     public double getCoteEmplacement() {
         return coteEmplacement;
     }
+
 }

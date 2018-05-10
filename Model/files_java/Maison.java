@@ -8,5 +8,9 @@ public class Maison extends Immobilier{
         this.meubles = meubles;
     }
 
+    public int prixLocationMensuel(){
+        return price * 1.005;
+    }
+
 
 }
