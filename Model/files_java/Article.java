@@ -31,7 +31,7 @@ public abstract class Article {
      * @param numeroSerie 
      */
 
-    protected Article(String type,String categorie, String description, Time timeOfPublish, double price, String nomArticle) { // PQ protected
+    protected Article(String type,String categorie, String description, Time timeOfPublish, double price, String nomArticle) {
         nbArticle++;
         this.id = nbArticle;
         this.type = type;
@@ -44,7 +44,7 @@ public abstract class Article {
         this.nomArticle = nomArticle;
     }
 
-    protected Article(Article article){                                                                                   // EST CE UN CONSTRUCTEUR PAR COPIE?
+    protected Article(Article article){
         this(article.type,article.categorie,article.description,article.time,article.price, null);
     }
 

@@ -12,4 +12,7 @@ public class Maison extends Immobilier{
         return price * 0.005;
     }
 
+
+
+
 }
