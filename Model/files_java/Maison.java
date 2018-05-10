@@ -9,8 +9,7 @@ public class Maison extends Immobilier{
     }
 
     public int prixLocationMensuel(){
-        return price * 1.005;
+        return price * 0.005;
     }
-
 
 }
