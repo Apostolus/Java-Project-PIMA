@@ -20,7 +20,7 @@ public class CompteBanque{
      * @param solde
      */
 
-    public CompteBanque(Entite entite, boolean decouvert, int montantDecouvertAutorise, int montantDecouvert, int solde) {
+    public CompteBanque(boolean decouvert, int montantDecouvertAutorise, int montantDecouvert, int solde) {
     	
         id++;
         this.numero = ""+id;
