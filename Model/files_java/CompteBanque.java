@@ -7,30 +7,34 @@ public class CompteBanque{
     private static int id = 0;
     private final String numero; // je vais à la fin personnaliser le numéro du compte bancaire en fonction de l'entité
     private boolean decouvert;
-    private int montantDecouvertAutorise;  // la limite maximal autorise
-    private int montantDecouvert;     //le montant courant de decouvert
-    private int solde;
+    private double montantDecouvertAutorise;  // la limite maximal autorise
+    private double montantDecouvert;     //le montant courant de decouvert
+    private double solde;
     
     /**
      * 
      * @param entite : sert à generer le numéro du compte bancaire
      * @param decouvert
-     * @param montantDecouvertAutorise
-     * @param montantDecouvert
-     * @param solde
+     * @param autorisationDecouvert
+     * @param e
+     * @param f
      */
 
-    public CompteBanque(Entite entite, boolean decouvert, int montantDecouvertAutorise, int montantDecouvert, int solde) {
+    public CompteBanque(boolean decouvert, double autorisationDecouvert, double e, double f) {
     	
         id++;
         this.numero = ""+id;
         this.decouvert = decouvert;
-        this.montantDecouvert = montantDecouvert;
-        this.montantDecouvertAutorise = montantDecouvertAutorise;
-        this.solde = solde;
+        this.montantDecouvert = e;
+        this.montantDecouvertAutorise = autorisationDecouvert;
+        this.solde = f;
     }
     
-    /**
+    public CompteBanque() {
+		this(false,0.0,0.0,0.0);
+	}
+
+	/**
      * 
      * @param article
      * @return
@@ -104,15 +108,15 @@ public class CompteBanque{
         return decouvert;
     }
 
-    public int getMontantDecouvert() {
+    public double getMontantDecouvert() {
         return montantDecouvert;
     }
 
-    public int getSolde() {
+    public double getSolde() {
         return solde;
     }
 
-    public int getMontantDecouvertAutorise() {
+    public double getMontantDecouvertAutorise() {
         return montantDecouvertAutorise;
     }
 

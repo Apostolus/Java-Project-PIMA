@@ -1,4 +1,6 @@
-public abstract class Article {
+import java.util.ArrayList;
+
+public abstract class Article implements Cloneable{
 	
 	/**
 	 * 
@@ -65,6 +67,45 @@ public abstract class Article {
     	}
     	return false;
     }
+    
+    public void setArticle(Article article) {
+    	this.etat = article.etat;
+    	this.type = (article.type).toString();
+    	this.categorie = (article.categorie).toString();
+    	this.description = (article.categorie).toString();
+    	this.time = new Time(article.time);
+    	this.price = article.price;
+    	this.nomArticle = article.nomArticle;
+    }
+    
+    
+    @Override
+    protected Article clone() {
+    	
+    	Article article = null;
+    	try {
+			article = (Article)(super.clone());
+		} catch (CloneNotSupportedException e) {
+			System.out.println("Article initialisée à la valeur null");
+			return null;
+		}
+    	
+    	article.setArticle(this);
+    	
+    	return article;
+    }
+    
+    protected abstract void addArticleArray(ArrayList<Article> articleArray, int quantite);
+    protected abstract void suppressToArticleArray(ArrayList<Article> articleArray, int quantite);
+    
+  
+	public boolean verifierDisponibilite(ArrayList<Article> articleArray, int quantite) {
+		
+		if(articleArray.contains(this) && (this.quantite >= quantite)) {
+			return true;
+		}
+		return false;
+	}
 
     /**
      * 
@@ -98,12 +139,12 @@ public String getType() {
         this.description = description;
     }
 
-    public Time getTimeOfPublish() {
+    public Time getTime() {
         return time;
     }
 
-    public void setTimeOfPublish(Time timeOfPublish) {
-        this.time = timeOfPublish;
+    public void setTime(Time time) {
+        this.time = time;
     }
 
     public String getCategorie() {
@@ -146,8 +187,17 @@ public String getType() {
         this.quantite = quantite;
     }
     
-    public void incrementeQuantite(int quantiteAjoute) {
+    public void increaseQuantite(int quantiteAjoute) {
     	this.quantite+=quantiteAjoute;
+    }
+    
+    public void decreaseQuantite(int quantiteDecrease) {
+    	if(this.quantite>=quantiteDecrease) {
+    		this.quantite-=quantiteDecrease;
+    	}
+    	else {
+    		System.out.println("la quantité à enlever est supérieure à celle existante");
+    	}
     }
     
     public String getNomArticle() {

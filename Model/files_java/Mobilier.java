@@ -1,14 +1,17 @@
+import java.util.ArrayList;
 import java.util.Date;
 
-public class Mobilier extends Article {
+public class Mobilier extends Article implements Garantissable {
 	private String marque;
-	private Time dureeGarantie;
+	private Time dureeGarantie = null;
+	private double priceGarantiePerMonth;
+	private boolean isGarantissable = false;
 
-    public Mobilier(String type, String description, Time timeOfPublish, double price, int quantite, String nomMobilier, String marque, Time garantieDuration) {
+    public Mobilier(String type, String description, Time timeOfPublish, double price, int quantite, String nomMobilier, String marque, double priceGarantiePerMonth) {
         super(type, "Mobilier", description, timeOfPublish, price, nomMobilier);
         super.quantite = quantite;
         this.marque = marque;
-        this.dureeGarantie = garantieDuration;
+        this.priceGarantiePerMonth = priceGarantiePerMonth;
     }
     
     /**
@@ -17,7 +20,7 @@ public class Mobilier extends Article {
      */
     
     public Mobilier() {
-    	this("type","description",new Time(),0.0,0, null, "marque", new Time());
+    	this("type","description",new Time(),100.0,0, null, "marque", 0.0);
     }
     
      /**
@@ -26,10 +29,44 @@ public class Mobilier extends Article {
       * @param mobilier
       */
     public Mobilier(Mobilier mobilier) {
-    	this(mobilier.type,mobilier.description,mobilier.time,mobilier.price,mobilier.quantite, mobilier.getNomArticle(), mobilier.marque, null);
+    	this(mobilier.type,mobilier.description,mobilier.time,mobilier.price,mobilier.quantite, mobilier.getNomArticle(), mobilier.marque, 0.0);
     }
     
+    @Override
+    protected Mobilier clone() {
+    	// TODO Auto-generated method stub
+    	return new Mobilier(this);
+    }
+   
+    @Override
+    protected void addArticleArray(ArrayList<Article> articleArray, int quantite) {
+    	
+    	Mobilier mobilier = this.clone();
+    	
+    	if(isGarantissable) {
+    		mobilier.setTime(new Time());
+    		mobilier.setQuantite(quantite);
+    		articleArray.add(mobilier);
+    	}
+    	
+    	else if(articleArray.contains(mobilier)) {
+    		int index_art = articleArray.indexOf(mobilier);
+			mobilier =(Mobilier)articleArray.remove(index_art);
+    	
+    		if(this instanceof Mobilier) {
+    			mobilier.decreaseQuantite(quantite);
+    		}
+			
+    		mobilier.setTime(new Time());
+    		articleArray.add(mobilier);
+    	}
+    	else {
+    		this.setQuantite(quantite);
+    		this.setTime(new Time());
+    		articleArray.add(this);
+    	}
     
+    }
     
     /**
      * sur cette méthode, on suppose qu'on a déjà testé que la garantie est encore valide.
@@ -38,9 +75,10 @@ public class Mobilier extends Article {
      * @return
      */
     
+    @Override
 	public Date garantieTimeRemaining() {
     	
-    	return (new Time()).addToCurrent(dureeGarantie.getDate());
+    	return (this.time).addToCurrent(dureeGarantie.getDate());
     }
 	
 	
@@ -54,16 +92,62 @@ public class Mobilier extends Article {
 	 * @return
 	 */
     
+    @Override
     public boolean garantieIsAvailable() {
     	
     	Date timeNow = new Date();
-    	Date tillBuy = (this.getTimeOfPublish()).addToCurrent(dureeGarantie.getDate());
+    	Date tillBuy = (this.getTime()).addToCurrent(dureeGarantie.getDate());
     	
     	if(timeNow.compareTo(tillBuy) == -1) {
     		return true;
     	}
     	return false;
     }
-    
+
+	@Override
+	public void setPriceGarantiePerMonth(double priceGarantiePerMonth) {
+		this.priceGarantiePerMonth = priceGarantiePerMonth;
+		
+	}
+
+	@Override
+	public double getPriceGarantiePerMonth() {
+		return priceGarantiePerMonth;
+	}
+
+	@Override
+	public void setDureeGarantie(Date date) {
+		dureeGarantie.setDate(date);
+	}
+
+	@Override
+	public Time getDureeGarantie() {
+		return dureeGarantie;
+	}
+
+	@Override
+	public boolean isGarantissable() {
+		return isGarantissable;
+	}
+
+	@Override
+	public void MakeArticleGarantissable(Date dureeGarantie) {
+		this.dureeGarantie = new Time(dureeGarantie);
+		isGarantissable = true;
+	}
+
+	@Override
+	protected void suppressToArticleArray(ArrayList<Article> articleArray, int quantite) {
+		
+		if(articleArray.contains(this)) {
+			Mobilier mobilier = this.clone();
+			articleArray.remove(this);
+			mobilier.decreaseQuantite(quantite);
+			articleArray.add(mobilier);
+		}
+		else {
+			System.out.println("Le produit n'existe pas dans L'array");
+		}
+	}
     
 }

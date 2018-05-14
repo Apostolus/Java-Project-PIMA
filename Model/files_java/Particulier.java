@@ -3,47 +3,17 @@ import java.util.ArrayList;
 public class Particulier extends Entite{
 
     private double note;
-    private Commande panier;                                  // la commande qui sera envoyer a un PROFESSIONNEL
     private ArrayList<Article> acquis;
 
-    public Particulier(String country, String departement, String city, String specificAdress, String email, String phoneNumber,boolean decouvert, int montantDecouvertAutorise, int montantDecouvert, int solde, String nom) {
-        super(country,departement,city,specificAdress,email,phoneNumber,decouvert,montantDecouvertAutorise,montantDecouvert,solde,nom);
+    public Particulier(String nom,Cordonnees cordonnees, CompteBanque compteBanque) {
+        super(cordonnees.getCountry(),cordonnees.getDepartement(),cordonnees.getCity(),cordonnees.getSpecificAdress(),cordonnees.getEmail(),cordonnees.getPhoneNumber(),nom);
         this.acquis = new ArrayList<Article>();
         this.note=0;
     }
 
-    public boolean addPanier(Professionnel professionnel,Article article, int quantite){
-        return panier.addCommande(article, quantite, professionnel);
-    }
- 
-    
-    /**
-     * 
-     * TODO --On pourra rappeler à la suite les méthodes qui mettent en communication les deux paticuliers, 
-     * pour finaliser la vente.
-     * pour le moment, achèter à un particulier, reviens à payer le montant d'un article précis dont l'existence
-     * est assurée.
-     * 
-     * cette méthode revoie un booléen, si c'est vraie, le particulier à qui on achète peut procèder à la livraison.
-     * le temps de livraison est déterminé par les deux (entente entre les deux personnes).
-     * 
-     * @param particulier
-     * @param article
-     * @return
-     */
-    
-    public boolean achete(Particulier particulier) {
-    	
-    	double price = panier.getTotalPrice();
-    	if(this.verifierPaiement(price)) {
-    		
-    			this.payeMontant(price);
-    			particulier.addToAccount(price);
-    			particulier.addCommande(panier);
-    			return true;
-    	}
-    	return false;
-    }
+    public Particulier() {
+    	this("nomParticulier", new Cordonnees(),new CompteBanque());
+	}
     
     /**
      * 
@@ -80,17 +50,6 @@ public class Particulier extends Entite{
         }
         if(nbArticle != 0) this.note = (sommeEtat/nbArticle);
     }
-    
-    /**
-     * 
-     */
-
-	@Override
-	public boolean achete(Professionnel professionnel) {
-		return this.payeCommande(panier,professionnel);
-	}
-
-	
 	/**
 	 * dans le cas où le particulier vend un article.
 	 * la livraison se fait par entente.
@@ -114,6 +73,10 @@ public class Particulier extends Entite{
 	public void livrerCommande(Commande commande) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public double getNote() {
+		return note;
 	}
 	
 }

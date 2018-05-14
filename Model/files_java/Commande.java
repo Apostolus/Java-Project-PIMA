@@ -6,13 +6,15 @@ public class Commande{
     private final String numCommande;
     private Time dateDeCommande;
     private Entite destinataire;
+    private Entite destinateur;
     public ArrayList<Article> articlesCommande;
     private Time timeOfCommande;
 
-    public Commande(Entite destinataire) {
+    public Commande(Entite destinataire,Entite destinateur) {
     	nbCommande++;
         this.dateDeCommande = new Time();
         this.destinataire = destinataire;
+        this.destinateur = destinateur;
         this.articlesCommande = new ArrayList<>();
         this.timeOfCommande = new Time();
         this.numCommande = timeOfCommande.getStringDateFormat()+"-"+nbCommande+"-"+destinataire.getId();
@@ -41,7 +43,7 @@ public class Commande{
         	Article articleTemp = articlesCommande.remove(index);
         	
         	if(articleTemp instanceof Mobilier) {
-        		((Mobilier)articleTemp).incrementeQuantite(quantite);
+        		((Mobilier)articleTemp).decreaseQuantite(quantite);
         	}
     		articlesCommande.add(articleTemp);
     		return true;
@@ -50,7 +52,7 @@ public class Commande{
     	else {
     		
     		if(article instanceof Mobilier) {
-        		((Mobilier)article).incrementeQuantite(quantite);
+        		((Mobilier)article).decreaseQuantite(quantite);
         	}
     		articlesCommande.add(article);
     		return true;
@@ -58,10 +60,13 @@ public class Commande{
     	
     }
     
-
+    public boolean removeArticle(Article article) {
+    	return articlesCommande.remove(article);
+    	
+    }
 
     public void LancerCommande(Entrepot entrepot){                                                                      // ne necessie pas le paiement?
-    	entrepot.addCommande(this);
+    	entrepot.recevoirCommande(this);
     }
 
     public String getNumCommande() {
@@ -101,14 +106,24 @@ public class Commande{
     public int getNbCommande() {
 		return nbCommande;
 	}
-
-	// modifs nathane
-/*
-    public void addArticle(Article article){
-        articlesCommande.add(article);
-    }
     
-    */
+    public Entite getDestinateur() {
+		return destinateur;
+	}
+    
+    public ArrayList<Article> getArticlesCommande() {
+		return articlesCommande;
+	}
+    
+    public void afficherCommande() {
+    	System.out.println("\n\nL'acheteur : \n-------------------");
+    	System.out.println(destinataire);
+    	System.out.println("\n");
+    	
+    	for(Article article : articlesCommande) {
+        	System.out.println(article);
+    	}
+    }
     
     
 }

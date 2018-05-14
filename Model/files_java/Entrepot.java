@@ -10,10 +10,4 @@ public class Entrepot extends Professionnel{
     	this(null,null,null,null,null,null,true,0,0,0,null);
     }
 
-	@Override
-	public boolean achete(Professionnel professionnel) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

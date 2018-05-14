@@ -15,6 +15,29 @@ public class Time{
 	public Time() {
 		this.date = new Date();
 	}
+	
+	public Time(Time time) {
+		this.date = time.date;
+	}
+	
+	public Time(Date date) {
+		this.date = date;
+	}
+	
+	@Override
+	protected Time clone() throws CloneNotSupportedException {
+		return new Time(this);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public Time(int years, int months, int days) {
+		Date date = new Date();
+		date.setYear(years);
+		date.setMonth(months);
+		date.setDate(days);
+		
+		this.date = date;
+	}
 
 	public String getStringDateFormat() {
 		return FORMAT_DATE.format(this.date);

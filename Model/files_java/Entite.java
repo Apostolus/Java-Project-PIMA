@@ -1,3 +1,4 @@
+import java.io.StringWriter;
 import java.util.ArrayList;
 
 public abstract class Entite implements Acheter, Vendre{
@@ -6,65 +7,103 @@ public abstract class Entite implements Acheter, Vendre{
 	private final int id;
 	private String nom;
     protected Cordonnees coordonnees;
-    private CompteBanque compteBanque;
+    private CompteBanque compteBanque = null;
     protected ArrayList<Article> articleArray;
-    protected ArrayList<Commande> commandes;
+    protected ArrayList<Commande> Otherscommandes;
+    protected Commande panier;
+    protected boolean hasAcount;
 
 
-    protected Entite(String country, String departement, String city, String specificAdress, String email, String phoneNumber,boolean decouvert, int montantDecouvertAutorise, int montantDecouvert, int solde, String nom) {
+    protected Entite(String country, String departement, String city, String specificAdress, String email, String phoneNumber,String nom) {
         entiteNumber++;
     	this.coordonnees = new Cordonnees(country,departement,city,specificAdress,email,phoneNumber);
-        this.compteBanque = new CompteBanque(this,decouvert, montantDecouvertAutorise, montantDecouvert, solde);
         this.articleArray = new ArrayList<>();
         this.nom = nom;
         this.id = entiteNumber;
-        this.commandes = new ArrayList<>();
+        this.Otherscommandes = new ArrayList<>();
+        this.hasAcount = false;
+        this.panier = null;
+    }
+    
+    
+    public void createPanier(Entite vendeur) {
+    	this.panier = new Commande(this,vendeur);
+    }
+    
+    public boolean addPanier(Article article,int quantite){
+        return panier.addCommande(article, quantite, panier.getDestinateur());
+	}
+    
+    /**
+     * 
+     * TODO --On pourra rappeler à la suite les méthodes qui mettent en communication les deux paticuliers, 
+     * pour finaliser la vente.
+     * pour le moment, achèter à un particulier, reviens à payer le montant d'un article précis dont l'existence
+     * est assurée.
+     * 
+     * cette méthode revoie un booléen, si c'est vraie, le particulier à qui on achète peut procèder à la livraison.
+     * le temps de livraison est déterminé par les deux (entente entre les deux personnes).
+     * @param article
+     * 
+     * @return
+     */
+    
+	@Override
+    public boolean achete() {
+		
+		if(!hasAcount) {
+			System.out.println("\n\n Le mec il n'a pas de compte\n\n");
+			return false;
+		}
+    	
+		Entite vendeur = panier.getDestinateur();
+    	double price = panier.getTotalPrice();
+    	if(this.verifierPaiement(price)) {
+    		
+    			this.payeMontant(price);
+    			vendeur.addToAccount(price);
+    			vendeur.recevoirCommande(panier);
+    			
+    			System.out.println("\n\n le tout est ok\n\n");
+    			return true;
+    	}
+    	
+    	System.out.println("\n\n le mec il ne peut pas payer\n\n");
+    	return false;
     }
     
     @Override
-    public void addCommande(Commande commande) {
-    	commandes.add(commande);
+    public void recevoirCommande(Commande commande) {
+    	Otherscommandes.add(commande);
+    }
+    
+    public void createAcount(Banque banque) {
+    	if(hasAcount) {
+    		return;
+    	}
+    	else {
+    		compteBanque = banque.createACount(this);
+    		hasAcount = true;
+    	}
     }
     
     @Override
     public boolean verifierDisponibilite(Article article, int quantite) {
-    	if(articleArray.contains(article)) {
-    		
-    		if(article instanceof Mobilier) {
-    			int index_art = articleArray.indexOf(article);
-    			Article temp = articleArray.get(index_art);
-    			
-    			if(((Mobilier)temp).getQuantite()>=quantite) {
-    				return true;
-    			}
-    			return false;
-    		}
-    		return true;
-    	}
-    	return false;
+    	return article.verifierDisponibilite(articleArray, quantite);
     }
 
     
-    protected void addArticleArray(Article article, int quantiteAjoute) {
-    	if(articleArray.contains(article)) {
-    		int index_art = articleArray.indexOf(article);
-			Article article_temp = articleArray.remove(index_art);
-    		
-    		if(article instanceof Mobilier) {
-    			article_temp.incrementeQuantite(quantiteAjoute);
-    		}
-    		articleArray.add(article_temp);
-    	}
-    	
-    	article.setQuantite(quantiteAjoute);
-    	articleArray.add(article);
+    protected void addArticleArray(Article article, int quantite) {
+    	article.addArticleArray(articleArray, quantite);
+    }
     
+    protected void suppressToArticleArray(Article article, int quantite) {
+    	article.suppressToArticleArray(articleArray, quantite);
     }
     
     @Override
-	public boolean payeCommande(Commande commande,Professionnel professionnel) {
-
- 		return compteBanque.paye(commande.getTotalPrice());
+	public void payeCommande(Commande commande) {
+ 		compteBanque.paye(commande.getTotalPrice());
  	}
 
     public boolean payeMontant(double price) {
@@ -98,6 +137,34 @@ public abstract class Entite implements Acheter, Vendre{
 	
 	public int getId() {
 		return id;
+	}
+	
+	@Override
+	public String toString() {
+		StringWriter stringWriter = new StringWriter();
+		stringWriter.write(", id : "+id);
+		stringWriter.write(", nom : "+nom);
+		stringWriter.write(", Argent sur compte : "+compteBanque.getSolde());
+	
+		return stringWriter.toString();
+	}
+	
+	public void afficherPanier() {
+		for(Article article : panier.getArticleCommande()) {
+			System.out.println(article);
+		}
+	}
+	
+	public void afficherAllcommande() {
+		for(Commande commande : Otherscommandes) {
+			commande.afficherCommande();
+		}
+	}
+	
+	public void afficheAllArticleArrays() {
+		for(Article article : articleArray) {
+			System.out.println(article);
+		}
 	}
 	
 }

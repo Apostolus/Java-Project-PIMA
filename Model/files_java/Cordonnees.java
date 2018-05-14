@@ -21,7 +21,12 @@ public class Cordonnees {
     }
 
 
-    public String getDepartement() {
+    public Cordonnees() {
+		this("country","departement","city","specificAdress","email","phoneNumber");
+	}
+
+
+	public String getDepartement() {
 		return this.departement;
 	}
 

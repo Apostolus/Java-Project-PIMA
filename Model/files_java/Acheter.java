@@ -2,7 +2,8 @@
 public interface Acheter{
 
 
-	boolean achete(Professionnel professionnel);
-	public boolean payeCommande(Commande commande,Professionnel professionnel);
+	boolean achete();
+	public void payeCommande(Commande commande);
+
 	
 }
