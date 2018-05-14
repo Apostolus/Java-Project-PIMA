@@ -1,7 +1,7 @@
 public class FondDeCommerce extends Immobilier{
     private String nomCommerce;
     private double chiffreDAffaire ;
-    private double coteEmplacement ; // int entre 0 et 100 pour noter la qualité de l'emplacement.
+    private int coteEmplacement ; // int entre 0 et 100 pour noter la qualité de l'emplacement.
 
     public FondDeCommerce(String type, String description, Time time, double price, double surface, int nbPiece, int nbMeubles, String nomCommerce, double chiffreDAffaire) {
         super("Maison", description, time, price, surface);
