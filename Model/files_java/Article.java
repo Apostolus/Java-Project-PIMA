@@ -52,7 +52,7 @@ public abstract class Article implements Cloneable{
 
     /**
      *
-     * deux articles sont égaux s'ils sont de meme catégorie, type et sont dans le meme état.                                // le numero de serie !!!!!!!!!!!!!!! NUMS ET ETAT  on devrait abaisser l'etat des qu'il y a un acte de vente
+     * deux articles sont égaux s'ils sont de meme catégorie, type et sont dans le meme état.
      *
      * @param object
      * @return
@@ -118,7 +118,7 @@ public abstract class Article implements Cloneable{
     	return "id : "+id+", type: "+", type : "+type+", categorie : "+categorie+", Date : "+description+time.getStringDateEtHeureFormat()+",price : "+price+", Serie : "+numeroDeSerie+", état : "+etat+", quantite : "+quantite;
     }
     
-public String getType() {
+    public String getType() {
         return type;
     }
     
@@ -203,4 +203,8 @@ public String getType() {
     public String getNomArticle() {
 		return nomArticle;
 	}
+
+    public static int getNbArticle() {
+        return nbArticle;
+    }
 }

@@ -6,8 +6,8 @@ import java.util.Date;
 
 public class Time{
 	
-	protected static final SimpleDateFormat FORMAT_DATE = new SimpleDateFormat("dd/MM/yyyy");
-	protected static final SimpleDateFormat HEURE_DATE = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+	protected final SimpleDateFormat FORMAT_DATE = new SimpleDateFormat("dd/MM/yyyy");
+	protected final SimpleDateFormat HEURE_DATE = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
 	
 	private  Date date;
 	

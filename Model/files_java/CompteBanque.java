@@ -3,8 +3,9 @@ public class CompteBanque{
 	private final int PAIEMENT_NON_AUTORISE = -1;
 	private final int PAIEMENT_AUTORISE = 0;
 	private final int PAIEMENT_AUTORISE_AVEC_DECOUVERT = 1;
-	
-    private static int id = 0;
+
+	private static nbCompte =0;
+    private int id;
     private final String numero; // je vais à la fin personnaliser le numéro du compte bancaire en fonction de l'entité
     private boolean decouvert;
     private double montantDecouvertAutorise;  // la limite maximal autorise
@@ -22,7 +23,7 @@ public class CompteBanque{
 
     public CompteBanque(boolean decouvert, double autorisationDecouvert, double e, double f) {
     	
-        id++;
+        nbCompte++;
         this.numero = ""+id;
         this.decouvert = decouvert;
         this.montantDecouvert = e;
@@ -120,11 +121,13 @@ public class CompteBanque{
         return montantDecouvertAutorise;
     }
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 
     public String getNumero() {
         return numero;
     }
+
+    public static int nbCompte(){ return nbCompte; }
 }

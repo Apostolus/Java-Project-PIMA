@@ -39,7 +39,7 @@ public class Commande{
     	}
     
     	if(articlesCommande.contains(article)) {
-    		int index = articlesCommande.indexOf(article); // je prend l'index de l'articule
+    		int index = articlesCommande.indexOf(article); // je prend l'index de l'article
         	Article articleTemp = articlesCommande.remove(index);
         	
         	if(articleTemp instanceof Mobilier) {
@@ -65,7 +65,7 @@ public class Commande{
     	
     }
 
-    public void LancerCommande(Entrepot entrepot){                                                                      // ne necessie pas le paiement?
+    public void LancerCommande(Entrepot entrepot){
     	entrepot.recevoirCommande(this);
     }
 
@@ -103,7 +103,7 @@ public class Commande{
     	return price;
     }
     
-    public int getNbCommande() {
+    public static int getNbCommande() {
 		return nbCommande;
 	}
     
@@ -124,6 +124,8 @@ public class Commande{
         	System.out.println(article);
     	}
     }
+
+
     
     
 }

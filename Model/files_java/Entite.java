@@ -166,5 +166,8 @@ public abstract class Entite implements Acheter, Vendre{
 			System.out.println(article);
 		}
 	}
-	
+
+    public static int getEntiteNumber() {
+        return entiteNumber;
+    }
 }
